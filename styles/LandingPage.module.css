@@ -1,0 +1,16 @@
+.headText {
+  font-weight: 700;
+  font-size: 70px !important;
+}
+.left {
+  margin: 120px 0;
+}
+.bgwave {
+  right: 0;
+  max-width: 50%;
+}
+@media all and (max-width: 992px) {
+  .right {
+    display: none;
+  }
+}

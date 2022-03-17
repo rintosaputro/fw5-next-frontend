@@ -4,3 +4,9 @@
 .nav li {
   list-style-type: none;
 }
+@media all and (max-width: 768px) {
+  .btncontainer {
+    width: 100%;
+  }
+}
+

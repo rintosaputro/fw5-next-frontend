@@ -1,7 +1,9 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import styles from '../styles/LandingPage.module.css'
 import Layout from '../components/Layout'
+import Button from '../components/Button'
+import { Col, Row } from 'react-bootstrap'
 
 export default function Home() {
   return (
@@ -13,64 +15,44 @@ export default function Home() {
       </Head>
 
       <Layout>
-        <main className={styles.main}>
+        <main className='mt-5'>
+          <header className='container'>
+            <div className='row align-items-center'>
+              <div className={`${styles.left} col-12 col-lg-6`}>
+                <h1 className={`${styles.headText} fs-1`}>Awesome App <br/> For Saving <span className='text-primary'>Time.</span></h1>
+                <p className='my-5 fs-4'>We bring you a mobile app for banking problems that oftenly wasting much of your times.</p>
+                <Button grid>Try it free</Button>
+              </div>
+              <div className={`${styles.right} col-12 col-lg-6`}>
+                <div className={`${styles.bgwave} d-inline-block position-absolute`}>
+                  <Image width={1000} height={1000} quality={100} layout='intrinsic' src='/bg-wave.png' alt='wave' />
+                </div>
+                <div>
+                  <Image layout='responsive' width={120} height={220} quality={100} src='/phone2.png' alt='phone' />
+                </div>
+              </div>
+            </div>
+          </header>
 
+          <section className='bg-light py-5'>
+            <div className='container'>
+              <div className='text-center mt-5 mx-auto'>
+                <h1 className={`${styles.headText} fs-1`}><span className='text-primary'>About</span> the Application.</h1>
+                <p className='my-5 fs-4 w-75 mx-auto'>We have some great features from the application and it’s totally free to use by all users around the world.</p>
+              </div>
+              <Row>
+                <Col ms={12} lg={4}>
+                  <div className='card'>
+
+                  </div>
+                </Col>
+                <Col ms={12} lg={4}></Col>
+                <Col ms={12} lg={4}></Col>
+              </Row>
+            </div>
+          </section>
         </main>
       </Layout>
-
-      {/* <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main> */}
-
-      {/* <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer> */}
     </div>
   )
 }
