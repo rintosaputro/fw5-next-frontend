@@ -27,6 +27,11 @@ export default function Home() {
       par: 'Zwallet is 100% totally free to use it’s now available on Google Play Store and App Store.'
     }
   ]
+  const dataFeatures = [
+    {head: 'Small Fee', par: 'We only charge 5% of every success transaction done in Zwallet app.'},
+    {head: 'Data Secured', par: 'All your data is secured properly in our system and it’s encrypted.'},
+    {head: 'User Friendly', par: 'Zwallet come up with modern and sleek design and not complicated.'}
+  ]
 
   return (
     <div>
@@ -87,13 +92,32 @@ export default function Home() {
                 <Row>
                   {[...Array(6)].map((item, index) => {
                     return <Col xs={6} md={4} key={index} className='mx-auto text-center'>
-                     <Image height={100} width={140} className={`${styles.partner}`} alt='partner' src={`/img/Group-${index + 1}.png`} />
+                     <Image height={index === 5 ? 60 : 100} width={index === 5 ? 200 : 140} className={`${styles.partner}`} alt='partner' src={`/img/Group-${index + 1}.png`} />
                     </Col>
                   })}
                 </Row>
               </Col>
             </Row>
           </section>
+
+          <secion className='bg-light'>
+            <div className='container'>
+              <Row>
+                <Col sm={12} lg={5}>
+                  <Image className='p-0' width={420} height={820} layout='responsive' quality={100} src='/img/phone.png' alt='phone' />
+                </Col>
+                <Col sm={12} lg={7} className='mt-5'>
+                  <h1 className={`${styles.headText} fs-1 mt-4`}>All The <span className='text-primary'>Great</span><br/> Zwallet Features.</h1>
+                  {dataFeatures.map((data, index) => (
+                    <div key={index} className='card bg-light p-5 mt-5'>
+                      <h4 className='fw-bold mb-3'><span className='text-primary'>{index + 1}.</span> {data.head}</h4>
+                      <div>{data.par}</div>
+                    </div>
+                  ))}
+                </Col>
+              </Row>
+            </div>
+          </secion>
         </main>
       </Layout>
     </div>
