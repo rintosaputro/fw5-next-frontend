@@ -2,8 +2,10 @@ import Link from "next/link";
 import style from './Navbar.module.scss'
 import { Navbar, Container, Nav } from "react-bootstrap";
 import Button from "./Button";
+import { useRouter } from "next/router";
 
 const Navigation = () => {
+  const router = useRouter();
   const show = (e) => {
     e.preventDefault();
     const element = document.getElementById('navbarRight')
@@ -32,10 +34,10 @@ const Navigation = () => {
       <div className="collapse navbar-collapse justify-content-end" id="navbarRight">
         <ul className={`${style.btncontainer} navbar-nav mb-2 mb-lg-0`}>
           <li className="nav-item me-0 my-4 my-md-0 me-md-4">
-            <Button block variant="outline-primary">Login</Button>
+            <Button block variant="outline-primary" route='/login'>Login</Button>
           </li>
           <li className="nav-item">
-            <Button block variant="secondary" cls='text-dark'>Signup</Button>
+            <Button block variant="secondary" route='/signup' cls='text-dark'>Signup</Button>
           </li>
         </ul>
       </div>
