@@ -25,4 +25,10 @@
   .right {
     display: none;
   }
+  .headText {
+    font-size: 40px !important;
+  }
+  .icon {
+    font-size: 15px;
+  }
 }

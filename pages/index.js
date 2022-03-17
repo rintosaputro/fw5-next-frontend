@@ -32,6 +32,23 @@ export default function Home() {
     {head: 'Data Secured', par: 'All your data is secured properly in our system and it’s encrypted.'},
     {head: 'User Friendly', par: 'Zwallet come up with modern and sleek design and not complicated.'}
   ]
+  const dataReview = [
+    {
+      img: '/img/review-1.jpg',
+      name: 'Sherina Chaw',
+      par: '“I use this app since 2 years ago and this is the best app that I’ve ever use in my entire life”'
+    },
+    {
+      img: '/img/review-3.jpg',
+      name: 'Jessica Mera',
+      par: '“I use Zwallet to manage all financial needs. It’s super easy to use and it’s 100% free app”'
+    },
+    {
+      img: '/img/review-2.jpg',
+      name: 'Robert Chandler',
+      par: '“Since I’m using this app, I’m not going to move to another similar app. Thank you Zwallet!”'
+    }
+  ]
 
   return (
     <div>
@@ -54,8 +71,8 @@ export default function Home() {
                 <div className={`${styles.bgwave} d-inline-block position-absolute`}>
                   <Image width={1000} height={1000} quality={100} layout='intrinsic' src='/bg-wave.png' alt='wave' />
                 </div>
-                <div>
-                  <Image layout='responsive' width={120} height={220} quality={100} src='/phone2.png' alt='phone' />
+                <div className='mx-auto text-center mt-4'>
+                  <Image layout='' width={470} height={925} quality={100} src='/phone2.png' alt='phone' />
                 </div>
               </div>
             </div>
@@ -70,7 +87,8 @@ export default function Home() {
               <Row>
                 {cardAbout.map(item => {
                   return <CardLanding 
-                    photo={<div className={`${styles.icon} bg-light`}>
+                    photo={
+                    <div className={`${styles.icon} bg-light`}>
                       <item.icon/>
                     </div>}
                     head={item.head}
@@ -91,7 +109,7 @@ export default function Home() {
               <Col sm={12} lg={7} className='ps-3 mt-sm-5 mt-lg-0'>
                 <Row>
                   {[...Array(6)].map((item, index) => {
-                    return <Col xs={6} md={4} key={index} className='mx-auto text-center'>
+                    return <Col xs={6} md={4} key={index} className='m-auto text-center'>
                      <Image height={index === 5 ? 60 : 100} width={index === 5 ? 200 : 140} className={`${styles.partner}`} alt='partner' src={`/img/Group-${index + 1}.png`} />
                     </Col>
                   })}
@@ -100,16 +118,16 @@ export default function Home() {
             </Row>
           </section>
 
-          <secion className='bg-light'>
+          <secion className='bg-light d-block py-5'>
             <div className='container'>
               <Row>
-                <Col sm={12} lg={5}>
+                <Col sm={12} lg={5} className='d-none d-lg-block'>
                   <Image className='p-0' width={420} height={820} layout='responsive' quality={100} src='/img/phone.png' alt='phone' />
                 </Col>
                 <Col sm={12} lg={7} className='mt-5'>
                   <h1 className={`${styles.headText} fs-1 mt-4`}>All The <span className='text-primary'>Great</span><br/> Zwallet Features.</h1>
                   {dataFeatures.map((data, index) => (
-                    <div key={index} className='card bg-light p-5 mt-5'>
+                    <div key={index} className='card bg-dark p-5 mt-5'>
                       <h4 className='fw-bold mb-3'><span className='text-primary'>{index + 1}.</span> {data.head}</h4>
                       <div>{data.par}</div>
                     </div>
@@ -118,6 +136,38 @@ export default function Home() {
               </Row>
             </div>
           </secion>
+          
+          <section className='container py-5 mb-5'>
+            <h1 className={`${styles.headText} fs-1 mt-4 text-center`}>What Users are <span className='text-primary'>Saying.</span></h1>
+            <p className='mx-auto text-center my-4 w-50'>We have some great features from the application and it’s totally free to use by all users around the world.</p>
+            <Row>
+              {dataReview.map((item, index) => (
+                <CardLanding
+                bg='light'
+                photo={
+                  <div>
+                    <style jsx>
+                      {`
+                      .review-photo${index + 1} {
+                        width: 60px;
+                        height: 60px;
+                        background-position: center;
+                        background-size: cover;
+                        background-image: url(${item.img});
+                        border-radius: 5px;
+                      }
+                      `}
+                    </style>
+                    <div className={`review-photo${index + 1}`}></div>
+                  </div>
+                }
+                head={item.name}
+                par={item.par}
+                key={item.name}
+              />
+              ))}
+            </Row>
+          </section>
         </main>
       </Layout>
     </div>
