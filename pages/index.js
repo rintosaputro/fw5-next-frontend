@@ -76,6 +76,24 @@ export default function Home() {
               </Row>
             </div>
           </section>
+
+          <section className='container py-5'>
+            <Row className='justify-content-between align-items-center my-5 g-3'>
+              <Col sm={12} lg={5} className='text-sm-center text-lg-start'>
+                <h1 className={`${styles.headText} fs-1`}>100+ <span className='text-primary'>Trusted</span> Partners.</h1>
+                <p className='mt-5'>We have reached global level and have 100+ brand partners around the globe.</p>
+              </Col>
+              <Col sm={12} lg={7} className='ps-3 mt-sm-5 mt-lg-0'>
+                <Row>
+                  {[...Array(6)].map((item, index) => {
+                    return <Col xs={6} md={4} key={index} className='mx-auto text-center'>
+                     <Image height={100} width={140} className={`${styles.partner}`} alt='partner' src={`/img/Group-${index + 1}.png`} />
+                    </Col>
+                  })}
+                </Row>
+              </Col>
+            </Row>
+          </section>
         </main>
       </Layout>
     </div>
