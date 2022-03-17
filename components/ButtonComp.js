@@ -1,6 +1,6 @@
 import { useRouter } from "next/dist/client/router";
 
-const Button = ({children, block, variant='primary', cls, color, route, ...rest}) => {
+const ButtonComp = ({block = false, variant='primary', cls, color, route, children, ...rest}) => {
   const router = useRouter()
 
   return (
@@ -10,4 +10,4 @@ const Button = ({children, block, variant='primary', cls, color, route, ...rest}
   )
 }
 
-export default Button;
+export default ButtonComp;

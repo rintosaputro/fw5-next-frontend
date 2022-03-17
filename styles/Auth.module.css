@@ -7,11 +7,11 @@
   background-size: cover;
   background-repeat: no-repeat;
   /* padding: 50px 70px; */
-  padding-left: 70px;
+  padding-left: 5%;
 }
 .right {
   /* padding: 50px 70px; */
-  padding-right: 70px;
+  padding-right: 5%;
 }
 .icon {
   bottom: 17px;

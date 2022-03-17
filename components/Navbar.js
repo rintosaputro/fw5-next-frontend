@@ -1,7 +1,7 @@
 import Link from "next/link";
 import style from './Navbar.module.scss'
 import { Navbar, Container, Nav } from "react-bootstrap";
-import Button from "./Button";
+import ButtonComp from "./ButtonComp";
 import { useRouter } from "next/router";
 
 const Navigation = () => {
@@ -34,10 +34,10 @@ const Navigation = () => {
       <div className="collapse navbar-collapse justify-content-end" id="navbarRight">
         <ul className={`${style.btncontainer} navbar-nav mb-2 mb-lg-0`}>
           <li className="nav-item me-0 my-4 my-md-0 me-md-4">
-            <Button block variant="outline-primary" route='/login'>Login</Button>
+            <ButtonComp block variant="outline-primary" route='/login'>Login</ButtonComp>
           </li>
           <li className="nav-item">
-            <Button block variant="secondary" route='/signup' cls='text-dark'>Signup</Button>
+            <ButtonComp block variant="secondary" route='/signup' cls='text-dark'>Signup</ButtonComp>
           </li>
         </ul>
       </div>
