@@ -4,8 +4,30 @@ import styles from '../styles/LandingPage.module.css'
 import Layout from '../components/Layout'
 import Button from '../components/Button'
 import { Col, Row } from 'react-bootstrap'
+import { BsTelephone } from 'react-icons/bs'
+import { FiLock } from 'react-icons/fi'
+import { AiOutlineDownload } from 'react-icons/ai'
+import CardLanding from '../components/CardLanding'
 
 export default function Home() {
+  const cardAbout = [
+    {
+      icon: BsTelephone,
+      head: '24/7 Support',
+      par: 'We have 24/7 contact support so you can contact us whenever you want and we will respond it.'
+    },
+    {
+      icon: FiLock,
+      head: 'Data Privacy',
+      par: 'We make sure your data is safe in our database and we will encrypt any data you submitted to us.'
+    },
+    {
+      icon: AiOutlineDownload,
+      head: 'Easy Download',
+      par: 'Zwallet is 100% totally free to use it’s now available on Google Play Store and App Store.'
+    }
+  ]
+
   return (
     <div>
       <Head>
@@ -41,13 +63,16 @@ export default function Home() {
                 <p className='my-5 fs-4 w-75 mx-auto'>We have some great features from the application and it’s totally free to use by all users around the world.</p>
               </div>
               <Row>
-                <Col ms={12} lg={4}>
-                  <div className='card'>
-
-                  </div>
-                </Col>
-                <Col ms={12} lg={4}></Col>
-                <Col ms={12} lg={4}></Col>
+                {cardAbout.map(item => {
+                  return <CardLanding 
+                    photo={<div className={`${styles.icon} bg-light`}>
+                      <item.icon/>
+                    </div>}
+                    head={item.head}
+                    par={item.par}
+                    key={item.head}
+                  />
+                })}
               </Row>
             </div>
           </section>
