@@ -8,7 +8,7 @@ import { AiOutlineCheck } from 'react-icons/ai'
 const Pin = () => {
   const [code, setCode] = useState();
   const [test, setTest] = useState('');
-  const [status, setStatus] = useState(true);
+  const [status, setStatus] = useState(false);
 
   const route = useRouter();
 

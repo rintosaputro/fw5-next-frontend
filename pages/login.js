@@ -15,7 +15,7 @@ const Login = () => {
         <InputAuth IconElement={<AiOutlineMail className={`${styles.icon} fs-4 position-absolute`}/>} type='text' placehld='e-mail' />
         <InputAuth IconElement={<VscLock className={`${styles.icon} fs-4 position-absolute`}/>} type='password' placehld='password'  />
       </form>
-      <Link href='/forgot'>
+      <Link href='/forgotPassword'>
         <a className='d-flex justify-content-end text-decoration-none my-5'>Forgot password?</a>
       </Link>
       <div className="my-5">
