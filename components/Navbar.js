@@ -27,7 +27,7 @@ const Navigation = () => {
   return (
     <nav className="navbar navbar-expand-md navbar-light bg-light fixed-top py-4">
     <div className="container">
-      <Link href='/'>
+      <Link href='/home'>
         <a className="navbar-brand fw-bold text-white fs-2">Zwallet</a>
       </Link>
       <button onClick={show}
