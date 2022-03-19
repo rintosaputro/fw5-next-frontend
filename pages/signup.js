@@ -5,13 +5,15 @@ import { VscLock } from 'react-icons/vsc';
 import styles from '../styles/Auth.module.css';
 import Link from 'next/link';
 import ButtonComp from "../components/ButtonComp";
-import { signup } from "../redux/actions/auth";
-import { useDispatch } from "react-redux";
+import { signup, addDataRegist } from "../redux/actions/auth";
+import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from 'next/router';
 
 const Signup = () => {
   const dispatch = useDispatch();
   const route = useRouter();
+
+  const { registerUser } = useSelector(state => state);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,7 +23,12 @@ const Signup = () => {
     const pwd = document.getElementById('pwd').value;
     const name = first + ' ' + last;
     dispatch(signup(name, email, pwd));
-    route.push('/pin')
+    dispatch(addDataRegist(name, email, pwd))
+    if (registerUser.isError) {
+      alert(`${registerUser.results.message}`);
+    } else {
+      route.push('/pin')
+    }
   }
 
   return (

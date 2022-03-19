@@ -1,5 +1,6 @@
 const registerState = {
   dataRegist: {},
+  results: {},
   message: '',
   isError: false,
   isLoading: false
@@ -15,10 +16,10 @@ const registerUser = (state = registerState, action) => {
       return { ...state }
     }
     case 'REGISTER_FULFILLED': {
-      const {data} = action;
+      const {data} = action.payload
       state.isError = false;
       state.isLoading = false;
-      state.dataRegist = data;
+      state.results = data;
       return { ...state };
     }
     case 'REGISTER_REJECTED': {
@@ -27,6 +28,10 @@ const registerUser = (state = registerState, action) => {
       state.isError = true;
       state.message = message;
       return { ...state };
+    }
+    case 'ADD_DATA_REGIST': {
+      const { dataRegist } = action.payload;
+      state.dataRegist = dataRegist;
     }
     default: {
       return { ...state };
