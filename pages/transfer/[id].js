@@ -27,12 +27,14 @@ const Transfer = () => {
     const balanceLeft = available - amount;
     const date = getDate();
     const payload = {...data, amount, notes, balanceLeft, date}
-    if (nominal > available) {
+    if (amount > available) {
       alert('nominal exceeds the limit')
+    } else if (!amount) {
+      alert('Please fill nominal transfer')
     } else {
       dispatch(inputTransfer(payload))
+      route.push('/transfer/confirmation');
     }
-    route.push('/transfer/confirmation');
   }
 
   return (

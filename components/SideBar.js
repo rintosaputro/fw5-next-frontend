@@ -30,7 +30,7 @@ const SideBar = () => {
                 <data.icon className='fs-5 me-2'/>
                 <span>{data.desc}</span>
               </a>  
-            : <a id={data.desc} className={`${routes === data.to ? 'active-side text-primary': 'text-white'} side-side text-decoration-none my-4 ps-2 d-flex flex-row align-items-center`}>
+            : <a id={data.desc} className={`${routes[1] === data.to[1] && routes[2] === data.to[2] ? 'active-side text-primary': 'text-white'} side-side text-decoration-none my-4 ps-2 d-flex flex-row align-items-center`}>
               <data.icon className='fs-5 me-2'/>
               <span>{data.desc}</span>
             </a>}

@@ -21,6 +21,11 @@ const Transfer = () => {
 
   const handleCode = (e) => {
     e.preventDefault();
+    if (code === '123456') {
+      alert('ok')
+    } else {
+      alert('salah')
+    }
     console.log(code)
     // route.push('/transfer/confirmation');
   }
@@ -64,15 +69,8 @@ const Transfer = () => {
               {listDetail('Date & Time', date)}
               {listDetail('Notes', notes)}
               <div className="mt-5 text-end">
-                {/* <ButtonComp>Continue</ButtonComp> */}
                 <ButtonComp type='button' data-bs-toggle="modal" data-bs-target="#exampleModal">Continue</ButtonComp>
               </div>
-
-              {/* <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Launch demo modal
-              </button> */}
-              {/* <ButtonComp type='button' data-bs-toggle="modal" data-bs-target="#exampleModal">Continue</ButtonComp> */}
-
               <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered">
                   <div className={`modal-content bg-primary text-dark ${styles.modal}`}>
@@ -90,7 +88,7 @@ const Transfer = () => {
                     type="numeric" 
                     inputMode="number"
                     style={{padding: '10px'}}  
-                    inputStyle={{borderColor: 'white', color: 'white'}}
+                    inputStyle={{borderColor: 'black', color: 'black'}}
                     inputFocusStyle={{borderColor: 'teal'}}
                     autoSelect={true}
                     regexCriteria={/^[ A-Za-z0-9_@./#&+-]*$/}
