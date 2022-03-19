@@ -30,7 +30,20 @@
 .notes:focus {
   box-shadow: none;
 }
-
+.cardList {
+  box-shadow: 0px 7px 20px -11px rgba(79,189,186,0.58);
+  -webkit-box-shadow: 0px 7px 20px -11px rgba(79,189,186,0.58);
+  -moz-box-shadow: 0px 7px 20px -11px rgba(79,189,186,0.58);
+}
+.modal {
+  /* -webkit-box-shadow: 0px 0px 33px 4px rgba(79,189,186,1);
+  -moz-box-shadow: 0px 0px 33px 4px rgba(79,189,186,1);
+  box-shadow: 0px 0px 33px 4px rgba(79,189,186,1); */
+  border-radius: 10px;
+}
+.borderNone {
+  border: none !important;
+}
 @media all and (max-width: 700px) {
   .notes {
     width: 90%;
