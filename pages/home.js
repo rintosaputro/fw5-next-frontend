@@ -5,6 +5,10 @@ import { Row, Col } from 'react-bootstrap';
 import SideBar from '../components/SideBar';
 import { BsArrowUp } from 'react-icons/bs';
 import ChartCard from '../components/ChartCard';
+import HistoriesList from '../components/HistoriesList';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { getHistory } from '../redux/actions/histories';
 
 const Home = () => {
 
@@ -12,8 +16,18 @@ const Home = () => {
     {image: '/img/review-2.jpg', name: 'Samuel Sushi', status: 'Accept', total: 50000},
     {image: '/img/review-2.jpg', name: 'Samuel Sushi', status: 'Transfer', total: 50000},
     {image: '/img/review-2.jpg', name: 'Samuel Sushi', status: 'Transfer', total: 50000},
+    {image: '/img/review-2.jpg', name: 'Samuel Sushi', status: 'Accept', total: 50000},
+    {image: '/img/review-2.jpg', name: 'Samuel Sushi', status: 'Accept', total: 50000},
+    {image: '/img/review-2.jpg', name: 'Samuel Sushi', status: 'Transfer', total: 50000},
+    {image: '/img/review-2.jpg', name: 'Samuel Sushi', status: 'Transfer', total: 50000},
     {image: '/img/review-2.jpg', name: 'Samuel Sushi', status: 'Accept', total: 50000}
   ]
+
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+    dispatch(getHistory())
+  }, [])
 
   return (
     <Layout>
@@ -57,25 +71,9 @@ const Home = () => {
               <Col xs={12} lg={6} className='mt-3'>
                 <div className='card bg-light p-3 h-100'>
                   <h4>Transaction History</h4>
+                  
                   {transaction.map((data, index) => {
-                    return <div key={index} className='d-flex flex-row align-items-center justify-content-between'>
-                      <style jsx>
-                        {`.photo-trans {
-                            background-image: url(${data.image});
-                          }`
-                        }
-                      </style>
-                      <div className='d-flex flex-row my-2'>
-                        <div className={`${styles.phototransaction} photo-trans`}></div>
-                        <div className='ps-2'>
-                          <div>{data.name}</div>
-                          <div>{data.status}</div>
-                        </div>
-                      </div>
-                      <div className={`${data.status === 'Transfer' ? 'text-danger fw-bold' : 'text-primary fw-bold'}`}>
-                        {data.status === 'Transfer' ? '-' : '+'}Rp{data.total}
-                      </div>
-                    </div>
+                    return (index < 4 &&  <HistoriesList image={data.image} name={data.name} status={data.status} total={data.total} />)
                   })}
                 </div>
               </Col>
