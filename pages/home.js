@@ -72,7 +72,7 @@ const Home = () => {
                 <div onClick={toHistories} className={`${styles.histories} card bg-light p-3 h-100`}>
                   <h4>Transaction History</h4>
                   {histories.map((data, index) => {
-                    return (index < 4 &&  <HistoriesList image={data.image} name={data.name} status={data.status} total={data.total} />)
+                    return (index < 4 &&  <HistoriesList key={index} image={data.image} name={data.name} status={data.status} total={data.total} />)
                   })}
                 </div>
               </Col>

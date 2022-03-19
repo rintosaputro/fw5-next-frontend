@@ -1,5 +1,5 @@
 import Link from "next/link";
-import style from './Navbar.module.scss'
+import style from './styles/Navbar.module.scss'
 import { Navbar, Container, Nav } from "react-bootstrap";
 import ButtonComp from "./ButtonComp";
 import { useRouter } from "next/router";

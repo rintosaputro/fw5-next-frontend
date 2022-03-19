@@ -21,6 +21,13 @@
 .partner {
   max-width: 120px;
 }
+.photoRev {
+  width: 60px;
+  height: 60px;
+  background-position: center;
+  background-size: cover;
+  border-radius: 5px;
+}
 @media all and (max-width: 992px) {
   .right {
     display: none;
