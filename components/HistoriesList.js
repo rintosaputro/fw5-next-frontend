@@ -9,7 +9,7 @@ const HistoriesList = ({image, name, status, total}) => {
           }`
         }
       </style>
-      <div className='d-flex flex-row my-2'>
+      <div className='d-flex flex-row my-3'>
         <div className={`${styles.phototransaction} photo-trans`}></div>
         <div className='ps-2'>
           <div>{name}</div>
@@ -17,7 +17,7 @@ const HistoriesList = ({image, name, status, total}) => {
         </div>
       </div>
       <div className={`${status === 'Transfer' ? 'text-danger fw-bold' : 'text-primary fw-bold'}`}>
-        {status === 'Transfer' ? '-' : '+'}Rp{total}
+        {status === 'Transfer' ? '-' : '+'}Rp{Number(total).toLocaleString('id-ID')}
       </div>
     </div>
   )

@@ -9,25 +9,25 @@ import HistoriesList from '../components/HistoriesList';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getHistory } from '../redux/actions/histories';
+import histories from './data dummy/histories';
+import { useRouter } from 'next/router';
 
 const Home = () => {
-
-  const transaction = [
-    {image: '/img/review-2.jpg', name: 'Samuel Sushi', status: 'Accept', total: 50000},
-    {image: '/img/review-2.jpg', name: 'Samuel Sushi', status: 'Transfer', total: 50000},
-    {image: '/img/review-2.jpg', name: 'Samuel Sushi', status: 'Transfer', total: 50000},
-    {image: '/img/review-2.jpg', name: 'Samuel Sushi', status: 'Accept', total: 50000},
-    {image: '/img/review-2.jpg', name: 'Samuel Sushi', status: 'Accept', total: 50000},
-    {image: '/img/review-2.jpg', name: 'Samuel Sushi', status: 'Transfer', total: 50000},
-    {image: '/img/review-2.jpg', name: 'Samuel Sushi', status: 'Transfer', total: 50000},
-    {image: '/img/review-2.jpg', name: 'Samuel Sushi', status: 'Accept', total: 50000}
-  ]
-
   const dispatch = useDispatch();
-  
+  const route = useRouter();
+
   useEffect(() => {
     dispatch(getHistory())
   }, [])
+
+  const toHistories = (e) => {
+    e.preventDefault();
+    route.push('/histories')
+    const target = document.getElementById('Dashboard');
+    target.classList.add('active-side');
+    target.classList.add('text-primary')
+    target.classList.remove('text-white');
+  }
 
   return (
     <Layout>
@@ -69,10 +69,9 @@ const Home = () => {
                 </div>
               </Col>
               <Col xs={12} lg={6} className='mt-3'>
-                <div className='card bg-light p-3 h-100'>
+                <div onClick={toHistories} className={`${styles.histories} card bg-light p-3 h-100`}>
                   <h4>Transaction History</h4>
-                  
-                  {transaction.map((data, index) => {
+                  {histories.map((data, index) => {
                     return (index < 4 &&  <HistoriesList image={data.image} name={data.name} status={data.status} total={data.total} />)
                   })}
                 </div>

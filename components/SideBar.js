@@ -25,10 +25,15 @@ const SideBar = () => {
     <div className='card p-4 bg-light position-relative h-100'>
         {dataSide.map((data, index) => {
           return <Link href={data.to} key={data.desc} className=' d-flex flex-row align-items-center my-3'>
-            <a className={`${routes === data.to ? 'active-side text-primary': 'text-white'} side-side text-decoration-none my-4 ps-2`}>
+            {route.pathname === '/histories' ? 
+              <a id={data.desc} className={`${index === 0 ? 'active-side text-primary': 'text-white'} side-side text-decoration-none my-4 ps-2 d-flex flex-row align-items-center`}>
+                <data.icon className='fs-5 me-2'/>
+                <span>{data.desc}</span>
+              </a>  
+            : <a id={data.desc} className={`${routes === data.to ? 'active-side text-primary': 'text-white'} side-side text-decoration-none my-4 ps-2 d-flex flex-row align-items-center`}>
               <data.icon className='fs-5 me-2'/>
               <span>{data.desc}</span>
-            </a>
+            </a>}
           </Link>
         })}
         <Link href='/login' className=' d-flex flex-row align-items-center my-3'>

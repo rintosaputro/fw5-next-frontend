@@ -9,3 +9,6 @@
   background-size: cover;
   border-radius: 5px;
 }
+.histories {
+  cursor: pointer;
+}
