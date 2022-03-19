@@ -3,7 +3,7 @@ import HistoriesList from '../components/HistoriesList';
 import SideBar from '../components/SideBar';
 import { Row, Col } from 'react-bootstrap';
 import styles from '../styles/Histories.module.css';
-import histories from './data dummy/histories';
+import histories from '../data dummy/histories';
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 
