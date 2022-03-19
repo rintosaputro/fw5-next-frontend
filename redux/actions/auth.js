@@ -24,3 +24,14 @@ export const addDataRegist = (fullName, email, password) => {
     }
   }
 }
+
+export const login = (email, password) => {
+  const param = new URLSearchParams();
+  param.append('email', email);
+  param.append('password', password);
+
+  return {
+    type: 'LOGIN',
+    payload: http().post('/auth/login', param)
+  }
+}
