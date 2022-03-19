@@ -1,12 +1,15 @@
 import { Row } from "react-bootstrap";
-import Layout from "../components/Layout";
-import SideBar from "../components/SideBar";
-import styles from '../styles/Transfer.module.css';
+import Layout from "../../components/Layout";
+import SideBar from "../../components/SideBar";
+import styles from '../../styles/Transfer.module.css';
 import { BiSearchAlt2 } from 'react-icons/bi';
-import receiver from "./data dummy/receiver";
-import ReceiverList from "../components/ReceiverList";
+import receiver from "../../data dummy/receiver";
+import ReceiverList from "../../components/ReceiverList";
+import { useRouter } from 'next/router';
 
 const Transfer = () => {
+  const route = useRouter();
+
   return (
     <Layout>
       <main className={`${styles.contain} container`}>
@@ -22,7 +25,7 @@ const Transfer = () => {
                 <input className={`${styles.input} form-control bg-secondary`} type='text' placeHolder='Search receive here' />
               </form>
               {receiver.map((data, index) => {
-                return <ReceiverList key={index} route={index} image={data.image} name={data.name} phone={data.phone} />
+                return <ReceiverList key={index} event={e => route.push(`/transfer/${index}`)} image={data.image} name={data.name} phone={data.phone} />
               })}
             </div>
           </section>

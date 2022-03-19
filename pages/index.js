@@ -65,7 +65,7 @@ export default function Home() {
               <div className={`${styles.left} col-12 col-lg-6`}>
                 <h1 className={`${styles.headText} fs-1`}>Awesome App <br/> For Saving <span className='text-primary'>Time.</span></h1>
                 <p className='my-5 fs-4'>We bring you a mobile app for banking problems that oftenly wasting much of your times.</p>
-                <ButtonComp display={true}>Try it free</ButtonComp>
+                <ButtonComp>Try it free</ButtonComp>
               </div>
               <div className={`${styles.right} col-12 col-lg-6`}>
                 <div className={`${styles.bgwave} d-inline-block position-absolute`}>

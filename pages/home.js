@@ -9,7 +9,7 @@ import HistoriesList from '../components/HistoriesList';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getHistory } from '../redux/actions/histories';
-import histories from './data dummy/histories';
+import histories from '../data dummy/histories';
 import { useRouter } from 'next/router';
 
 const Home = () => {
@@ -17,7 +17,7 @@ const Home = () => {
   const route = useRouter();
 
   useEffect(() => {
-    dispatch(getHistory())
+    // dispatch(getHistory())
   }, [])
 
   const toHistories = (e) => {
