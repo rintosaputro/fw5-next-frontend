@@ -1,4 +1,4 @@
-import style from './Footer.module.scss'
+import style from './styles/Footer.module.scss'
 const Footer = ({full}) => {
   return (
     <footer className={style.footer}>

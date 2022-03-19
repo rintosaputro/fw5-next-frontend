@@ -65,7 +65,7 @@ export default function Home() {
               <div className={`${styles.left} col-12 col-lg-6`}>
                 <h1 className={`${styles.headText} fs-1`}>Awesome App <br/> For Saving <span className='text-primary'>Time.</span></h1>
                 <p className='my-5 fs-4'>We bring you a mobile app for banking problems that oftenly wasting much of your times.</p>
-                <ButtonComp grid={true}>Try it free</ButtonComp>
+                <ButtonComp display={true}>Try it free</ButtonComp>
               </div>
               <div className={`${styles.right} col-12 col-lg-6`}>
                 <div className={`${styles.bgwave} d-inline-block position-absolute`}>
@@ -87,7 +87,7 @@ export default function Home() {
               <Row>
                 {cardAbout.map(item => {
                   return <CardLanding 
-                    photo={
+                    image={
                     <div className={`${styles.icon} bg-light`}>
                       <item.icon/>
                     </div>}
@@ -143,22 +143,10 @@ export default function Home() {
             <Row>
               {dataReview.map((item, index) => (
                 <CardLanding
-                bg='light'
-                photo={
+                bg={true}
+                image={
                   <div>
-                    <style jsx>
-                      {`
-                      .review-photo${index + 1} {
-                        width: 60px;
-                        height: 60px;
-                        background-position: center;
-                        background-size: cover;
-                        background-image: url(${item.img});
-                        border-radius: 5px;
-                      }
-                      `}
-                    </style>
-                    <div className={`review-photo${index + 1}`}></div>
+                    <div className={`review-photo ${styles.photoRev}`} style={{backgroundImage: `url(${item.img})`}}></div>
                   </div>
                 }
                 head={item.name}

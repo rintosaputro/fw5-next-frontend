@@ -1,4 +1,4 @@
-import styles from './InputAuth.module.css';
+import styles from './styles/InputAuth.module.css';
 import { AiOutlineEye } from 'react-icons/ai'
 
 const InputAuth = ({IconElement, cls, id, placehld, type}) => {
