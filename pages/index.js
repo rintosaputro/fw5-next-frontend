@@ -58,7 +58,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Layout>
+      <Layout fullFooter={true}>
         <main className='mt-5'>
           <header className='container'>
             <div className='row align-items-center'>
