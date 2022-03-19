@@ -7,8 +7,8 @@ import { useState } from "react";
 import { MdNotificationsNone } from 'react-icons/md'
 
 const Navigation = () => {
-  const router = useRouter();
-  const [auth, setAuth] = useState(true);
+  const route = useRouter();
+  const [auth, setAuth] = useState(false);
   const dataUser = {
     image: '/img/review-2.jpg',
     name: 'Robert Chandler',
@@ -24,6 +24,13 @@ const Navigation = () => {
       element.style.display = 'flex'
     }
   }
+
+  // const handleBtn = (e, route) => {
+  //   e.preventDefault();
+  //   console.log('test')
+  //   route.push(route)
+  // }
+
   return (
     <nav className="navbar navbar-expand-md navbar-light bg-light fixed-top py-4">
     <div className="container">
@@ -71,10 +78,10 @@ const Navigation = () => {
             </>
           : <>
             <li className="nav-item me-0 my-4 my-md-0 me-md-4">
-              <ButtonComp block variant="outline-primary" route='/login'>Login</ButtonComp>
+              <ButtonComp block='true' variant="outline-primary" event={e => route.push('/login')}>Login</ButtonComp>
             </li>
             <li className="nav-item">
-              <ButtonComp block variant="secondary" route='/signup' cls='text-dark'>Signup</ButtonComp>
+              <ButtonComp block='true' variant="secondary" event={e => route.push('/signup')} cls='text-dark'>Signup</ButtonComp>
             </li>
             </>}
         </ul>

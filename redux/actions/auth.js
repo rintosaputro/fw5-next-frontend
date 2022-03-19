@@ -5,4 +5,13 @@ export const signup = (fullName, email, password) => {
   param.append('fullName', fullName);
   param.append('email', email);
   param.append('password', password);
+  const data = {
+    fullName, email, password
+  }
+
+  return {
+    type: 'REGISTER',
+    payload: http().post('/auth/register'),
+    data
+  }
 }

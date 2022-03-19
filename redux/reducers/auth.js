@@ -1,0 +1,37 @@
+const registerState = {
+  dataRegist: {},
+  message: '',
+  isError: false,
+  isLoading: false
+}
+
+const registerUser = (state = registerState, action) => {
+  switch (action.type) {
+    case 'REGISTER_PENDING': {
+      state.isError = false;
+      state.message = '';
+      state.dataRegist = {}
+      state.isLoading = true;
+      return { ...state }
+    }
+    case 'REGISTER_FULFILLED': {
+      const {data} = action;
+      state.isError = false;
+      state.isLoading = false;
+      state.dataRegist = data;
+      return { ...state };
+    }
+    case 'REGISTER_REJECTED': {
+      const { message } = action.payload.response.data;
+      state.isLoading = false;
+      state.isError = true;
+      state.message = message;
+      return { ...state };
+    }
+    default: {
+      return { ...state };
+    }
+  }
+}
+
+export default registerUser;
