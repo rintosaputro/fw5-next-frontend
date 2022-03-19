@@ -22,3 +22,17 @@
   background-size: cover;
   border-radius: 5px;
 }
+.notes {
+ border: none;
+ border-bottom: 1px solid gray; 
+ width: 50%;
+}
+.notes:focus {
+  box-shadow: none;
+}
+
+@media all and (max-width: 700px) {
+  .notes {
+    width: 90%;
+  }
+}
