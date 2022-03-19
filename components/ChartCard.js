@@ -65,7 +65,7 @@ const ChartCard = ({labels, dataChart, income = 0, expense = 0}) => {
 
   return (
     <div className='container'>
-      <Row>
+      <Row className='d-flex flex-row justify-content-end'>
         <Row className='d-flex justify-content-end'>
           <Col xs={12} md={6}>
             <BsArrowDown className='text-primary fw-bold fs-4' />
@@ -80,7 +80,7 @@ const ChartCard = ({labels, dataChart, income = 0, expense = 0}) => {
             </div>
           </Col>
         </Row>
-        <Col xs={12} className='mt-4'>
+        <Col xs={12} className='mt-5'>
           <Bar options={options} data={data} className='text-white'/>
         </Col>
       </Row>

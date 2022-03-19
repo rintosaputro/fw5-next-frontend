@@ -1,13 +1,12 @@
 import '../styles/globals.css'
-// import 'bootstrap/dist/css/bootstrap.min.css'
-// import 'bootstrap/dist/js/bootstrap.bundle';
-// import 'bootstrap/dist/js/bootstrap.bundle';
-// import 'bootstrap/dist/css/bootstrap.css'
 import '../styles/scss/custom.scss'
-// import '../styles/scss/global.scss'
+import store from '../redux/store';
+import { Provider } from 'react-redux';
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return <Provider store={store}>
+    <Component {...pageProps} />
+  </Provider>
 }
 
 export default MyApp
