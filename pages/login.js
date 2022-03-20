@@ -8,17 +8,29 @@ import ButtonComp from "../components/ButtonComp";
 import { login } from "../redux/actions/auth";
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const Login = () => {
   const route = useRouter();
   const dispatch = useDispatch();
+  const { login : loginState } = useSelector(state => state);
+
+  useEffect(() => {
+    const token = window.localStorage.getItem('token')
+    if (token) {
+      route.push('/home');
+    }
+  }, [loginState])
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     dispatch(login(email, password));
-    route.push('/home');
+    if (!loginState.isLoading) {
+      route.push('/home');
+    }
     console.log(email, password)
   }
 
@@ -34,7 +46,11 @@ const Login = () => {
         <a className='d-flex justify-content-end text-decoration-none my-5'>Forgot password?</a>
       </Link>
       <div className="my-5">
-        <ButtonComp block='true' event={handleSubmit} cls='mt-5'>Login</ButtonComp>
+        {loginState.isLoading 
+        ? <div className="spinner-border" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+        : <ButtonComp block='true' event={handleSubmit} cls='mt-5'>Login</ButtonComp>}
       </div>
       <div className="d-flex justify-content-end">
           Dont have an account? Lets
