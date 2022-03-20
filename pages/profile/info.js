@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import ListDetail from "../../components/ListDetail";
 import Link from "next/link";
 
-const Profile = () => {
+const Info = () => {
   const route = useRouter();
 
   const { login, phoneList, email } = useSelector(state => state);
@@ -43,4 +43,4 @@ const Profile = () => {
   )
 }
 
-export default Profile;
+export default Info;
