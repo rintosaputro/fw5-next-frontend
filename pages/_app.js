@@ -3,7 +3,7 @@ import '../styles/scss/custom.scss'
 import store from '../redux/store';
 import { Provider, useDispatch, useSelector } from 'react-redux';
 import { useEffect } from "react";
-import { getProfile } from '../redux/actions/auth';
+import { getProfile, getPhoneList } from '../redux/actions/auth';
 
 const MyComponent = ({children}) => {
   const dispatch = useDispatch();
@@ -23,6 +23,7 @@ const MyComponent = ({children}) => {
         }
       });
       dispatch(getProfile(token));
+      dispatch(getPhoneList(token));
     }
   }, [])
   return (<>{children}</>)
