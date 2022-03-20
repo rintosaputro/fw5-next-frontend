@@ -1,24 +1,32 @@
-import AuthPage from "../components/AuthPage";
+import AuthPage from "../../components/AuthPage";
 import PinInput from "react-pin-input";
-import ButtonComp from "../components/ButtonComp";
+import ButtonComp from "../../components/ButtonComp";
 import { useState } from "react";
 import { useRouter } from "next/dist/client/router";
 import { AiOutlineCheck } from 'react-icons/ai'
+import { useDispatch, useSelector } from "react-redux";
+import { signup } from "../../redux/actions/auth";
 
 const Pin = () => {
   const [code, setCode] = useState();
   const [test, setTest] = useState('');
   const [status, setStatus] = useState(false);
 
+  const dispatch = useDispatch();
+
+  const { registerUser } = useSelector(state => state);
+
   const route = useRouter();
 
   let pin;
   const handleConfirm = (e) => {
     e.preventDefault();
-    console.log('pin', pin);
-    console.log('test', test)
+    const { fullName, email, pwd, code } = registerUser.dataRegist;
     if (Number(test) === 123456) {
-      setStatus(true)
+      setStatus(true);
+      dispatch(signup(fullName, email, pwd, code));
+    } else {
+      alert('Wrong code input')
     }
   }
   return (
