@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { signup } from "../../redux/actions/auth";
 
 const Pin = () => {
-  const [code, setCode] = useState();
   const [test, setTest] = useState('');
   const [status, setStatus] = useState(false);
 
@@ -21,10 +20,11 @@ const Pin = () => {
   let pin;
   const handleConfirm = (e) => {
     e.preventDefault();
-    const { fullName, email, pwd, code } = registerUser.dataRegist;
+    const { fullName, email, password } = registerUser.dataRegist;
+    console.log(fullName, email, password, Number(test))
     if (Number(test) === 123456) {
       setStatus(true);
-      dispatch(signup(fullName, email, pwd, code));
+      dispatch(signup(fullName, email, password, Number(test)));
     } else {
       alert('Wrong code input')
     }
