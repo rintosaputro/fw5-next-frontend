@@ -9,8 +9,12 @@ import ButtonComp from "../../components/ButtonComp";
 import { signup, addDataRegist } from "../../redux/actions/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from 'next/router';
+import { useState } from 'react';
+import checkPassword from '../../helper/checkPwd';
 
 const Signup = () => {
+  const [pwd, setPwd] = useState(false);
+
   const dispatch = useDispatch();
   const route = useRouter();
 
@@ -23,14 +27,17 @@ const Signup = () => {
     const email = document.getElementById('email').value;
     const pwd = document.getElementById('pwd').value;
     const name = first + ' ' + last;
-    // dispatch(signup(name, email, pwd));
-    dispatch(addDataRegist(name, email, pwd))
-    // if (registerUser.isError) {
-    //   alert(`${registerUser.results.message}`);
-    // } else {
-    //   route.push('/signup/pin')
-    // }
-    route.push('/signup/pin')
+    if (first && last && email && pwd) {
+      if (checkPassword(pwd)) {
+        setPwd(false)
+        dispatch(addDataRegist(name, email, pwd))
+        route.push('/signup/pin')
+      } else {
+        setPwd(true)
+      }
+    } else {
+      alert('Data must be filled')
+    }
   }
 
   return (
@@ -42,6 +49,7 @@ const Signup = () => {
         <InputAuth id='last' IconElement={<AiOutlineUser className={`${styles.icon} fs-4 position-absolute`}/>} type='text' placehld='last name' />
         <InputAuth id='email' IconElement={<AiOutlineMail className={`${styles.icon} fs-4 position-absolute`}/>} type='email' placehld='e-mail' />
         <InputAuth id='pwd' IconElement={<VscLock className={`${styles.icon} fs-4 position-absolute`}/>} type='password' placehld='password'  /> 
+        {pwd && <div className='text-danger'>The Password must be at least 6 characters long, use upper and lower case</div>}
         <div className="my-5">
           <ButtonComp block='true' event={handleSubmit} type='submit' cls='mt-3'>signup</ButtonComp>
         </div>
