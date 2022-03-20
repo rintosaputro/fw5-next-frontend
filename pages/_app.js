@@ -24,7 +24,7 @@ const MyComponent = ({children}) => {
       });
       dispatch(getProfile(token));
     }
-  }, [dispatch, login.token])
+  }, [])
   return (<>{children}</>)
 }
 
@@ -36,7 +36,7 @@ function MyApp({ Component, pageProps }) {
 
   return <Provider store={store}>
     <MyComponent>
-    <Component {...pageProps} />  
+      <Component {...pageProps} />  
     </MyComponent>
   </Provider>
 }
