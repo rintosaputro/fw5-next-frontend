@@ -25,7 +25,7 @@ const MyComponent = ({children}) => {
       dispatch(getProfile(token));
       dispatch(getPhoneList(token));
     }
-  }, [])
+  }, [login.token])
   return (<>{children}</>)
 }
 
