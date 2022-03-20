@@ -89,6 +89,15 @@ export const login = (state = loginState, action) => {
       state.results = {}
       return { ...state };
     }
+    case 'LOGOUT': {
+      state.results = {};
+      state.token = null;
+      state.errMessage = null;
+      state.isError = false;
+      state.isLoading = false;
+      window.localStorage.removeItem('token')
+      return { ...state };
+    }
     default: {
       return  { ...state };
     }
@@ -111,7 +120,7 @@ export const forgotPassword = (state = forgotState, action) => {
       state.isSuccess = false;
       return { ...state };
     }
-    case 'FORGOT_PASSWORD': {
+    case 'FORGOT_PASSWORD_FULFILLED': {
       const { data } = action.payload;
       state.isLoading = false;
       state.isError = false;
@@ -119,7 +128,45 @@ export const forgotPassword = (state = forgotState, action) => {
       state.message = data.message;
       return { ...state };
     }
-    case 'FORGOT_PASSWORD': {
+    case 'FORGOT_PASSWORD_REJECTED': {
+      const { message } = action.payload.response.data;
+      state.isLoading = false;
+      state.message = message;
+      state.isSuccess = false;
+      state.isError = true;
+      return { ...state };
+    }
+    default: {
+      return { ...state };
+    }
+  }
+}
+
+const changeState = {
+  message: null,
+  isLoading: false,
+  isError: false,
+  isSuccess: false
+}
+
+export const changePassword = (state = changeState, action) => {
+  switch (action.type) {
+    case 'CHANGE_PASSWORD_PENDING': {
+      state.isError = false;
+      state.message = null;
+      state.isLoading = true;
+      state.isSuccess = false;
+      return { ...state };
+    }
+    case 'CHANGE_PASSWORD_FULFILLED': {
+      const { data } = action.payload;
+      state.isLoading = false;
+      state.isError = false;
+      state.isSuccess = true;
+      state.message = data.message;
+      return { ...state };
+    }
+    case 'CHANGE_PASSWORD_REJECTED': {
       const { message } = action.payload.response.data;
       state.isLoading = false;
       state.message = message;

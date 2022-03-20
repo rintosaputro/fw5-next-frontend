@@ -9,14 +9,18 @@ import { useRouter } from 'next/router';
 import { forgotPassword } from "../../redux/actions/auth";
 import { useDispatch, useSelector } from "react-redux";
 import SpinnerLoad from "../../components/SpinnerLoad";
+import { changePassword } from "../../redux/actions/auth";
+import checkPassword from "../../helper/checkPwd";
 
 const ForgotPassword = () => {
   const [status, setStatus] = useState('');
+  const [change, setChange] = useState(false);
+  const [pwd, setPwd] = useState(false);
 
   const route = useRouter();
 
   const dispatch = useDispatch();
-  const { forgotPassword: forgotData } = useSelector(state => state);
+  const { forgotPassword: forgotData, changePassword: changeData } = useSelector(state => state);
 
   useEffect(() => {
     console.log(route.query.otp)
@@ -33,6 +37,23 @@ const ForgotPassword = () => {
     // setStatus(email)
   }
 
+  const changePwd = (e) => {
+    e.preventDefault();
+    const otp = route.query.otp;
+    const newPwd = document.getElementById('newPwd').value;
+    const confirmPwd = document.getElementById('confirmPwd').value;
+    if (checkPassword(newPwd) && newPwd) {
+      if (newPwd === confirmPwd) {
+        alert('ok')
+        dispatch(changePassword(otp, newPwd, confirmPwd));
+      } else {
+        alert('The password confirmation doesnt match')
+      }
+    } else {
+      setPwd(true);
+    }
+  }
+
   return (
     <AuthPage 
       info={
@@ -43,20 +64,22 @@ const ForgotPassword = () => {
       }
       form={
         route.query.otp ?
-        <form>
-          <InputAuth IconElement={<VscLock className={`${styles.icon} fs-4 position-absolute`}/>} type='password' placehld='new password'  />
-          <InputAuth IconElement={<VscLock className={`${styles.icon} fs-4 position-absolute`}/>} type='password' placehld='confirm new password'  />
+        (change 
+        ? <div>{changeData.message}</div>
+        : <form>
+          <InputAuth id='newPwd' IconElement={<VscLock className={`${styles.icon} fs-4 position-absolute`}/>} type='text' placehld='new password'  />
+          {pwd && <div className="text-danger">The Password must be at least 6 characters long, use upper and lower case</div>}
+          <InputAuth id='confirmPwd' IconElement={<VscLock className={`${styles.icon} fs-4 position-absolute`}/>} type='text' placehld='confirm new password'  />
           <div className="mt-5">
-            <ButtonComp event={handleConfirm} block>Reset Password</ButtonComp>
+            <ButtonComp event={changePwd} block='true'>Reset Password</ButtonComp>
           </div>
-        </form>
+        </form>)
         : 
-        (forgotData.isLoading 
-        ? (forgotData.isSuccess ? <div>{forgotData.message}</div> : <SpinnerLoad/>)
+        (forgotData.isSuccess ? <div>{forgotData.message}</div>
         : <form>
           <InputAuth IconElement={<AiOutlineMail className={`${styles.icon} fs-4 position-absolute`}/>} id='email' type='text' placehld='e-mail' />
           <div className="mt-5">
-            <ButtonComp event={handleConfirm} block>Confirm</ButtonComp>
+            <ButtonComp event={handleConfirm} block='true'>Confirm</ButtonComp>
           </div>
         </form>)
       }

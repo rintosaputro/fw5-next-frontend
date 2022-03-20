@@ -50,3 +50,14 @@ export const forgotPassword = (email) => {
     payload: http().post(`/auth/forgot-password?callback_url=${callbackUrl}`, param)
   }
 }
+
+export const changePassword = (otp, newPwd, confirmPwd) => {
+  const param = new URLSearchParams();
+  param.append('otp', Number(otp));
+  param.append('newPassword', newPwd);
+  param.append('confirmPassword', confirmPwd)
+  return {
+    type: 'CHANGE_PASSWORD',
+    payload: http().post('/auth/forgot-password', param)
+  }
+}

@@ -1,5 +1,5 @@
 import { Row } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Layout from "../../components/Layout";
 import SideBar from "../../components/SideBar";
 import styles from '../../styles/Profile.module.css';
@@ -11,9 +11,19 @@ import { useRouter } from "next/router";
 const Profile = () => {
   const route = useRouter();
 
+  const dispatch = useDispatch();
+
   const { login, phoneList } = useSelector(state => state);
   const defaultPict = '/img/defaultPict.png'
   const { picture, fullName } = login.results
+
+  const handleLogout = (e) => {
+    e.preventDefault();
+    dispatch({
+      type: 'LOGOUT'
+    })
+    route.push('/login');
+  }
 
   return (
     <Layout>
@@ -51,7 +61,7 @@ const Profile = () => {
                   <span className="text-start">Change PIN</span>
                   <AiOutlineArrowRight className="text-end" />
                 </ButtonComp>
-                <ButtonComp cls='d-flex justify-content-between align-items-center mx-auto w-75 mt-4'>
+                <ButtonComp event={handleLogout} cls='d-flex justify-content-between align-items-center mx-auto w-75 mt-4'>
                   <span className="text-start">Log Out</span>
                   <AiOutlineArrowRight className="text-end" />
                 </ButtonComp>
