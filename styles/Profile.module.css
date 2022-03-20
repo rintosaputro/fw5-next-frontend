@@ -9,3 +9,10 @@
   background-size: cover;
   border-radius: 5px;
 }
+.par {
+  width: 50%;
+}
+.manage {
+  right: 15px;
+  bottom: 45px;
+}
