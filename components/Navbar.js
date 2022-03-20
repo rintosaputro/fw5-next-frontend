@@ -5,15 +5,21 @@ import ButtonComp from "./ButtonComp";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { MdNotificationsNone } from 'react-icons/md'
+import { useSelector } from "react-redux";
 
 const Navigation = () => {
   const route = useRouter();
-  const [auth, setAuth] = useState(false);
+  
+  const { login } = useSelector(state => state);
+  // const token = window.localStorage.getItem('token');
   const dataUser = {
     image: '/img/review-2.jpg',
     name: 'Robert Chandler',
     phone: '+62 8139 3877 7946'
   }
+
+  const { picture, fullName } = login.results;
+  const defaultPict = '/img/defaultPict.png';
 
   const show = (e) => {
     e.preventDefault();
@@ -49,7 +55,7 @@ const Navigation = () => {
       </button>
       <div className="collapse navbar-collapse justify-content-end align-items-center" id="navbarRight">
         <ul className={`${style.btncontainer} navbar-nav mb-2 mb-lg-0`}>
-          {auth 
+          {login.token 
           ? <>
             <li className="nav-item">
               <div className="position-relative">
@@ -60,7 +66,7 @@ const Navigation = () => {
                     height: 60px;
                     background-position: center;
                     background-size: cover;
-                    background-image: url(${dataUser.image});
+                    background-image: url(${picture ? picture : defaultPict});
                     border-radius: 5px;
                   }
                   `}
@@ -69,7 +75,7 @@ const Navigation = () => {
               </div>
             </li>
             <li className='mx-3'>
-              <h4 className="fw-bold">{dataUser.name}</h4>
+              <h4 className="fw-bold">{fullName}</h4>
               <div>{dataUser.phone}</div>
             </li>
             <li className="my-auto">
