@@ -43,16 +43,16 @@ const Profile = () => {
                   <span className="text-start">Personal Information</span>
                   <AiOutlineArrowRight className="text-end" />
                 </ButtonComp>
-                <ButtonComp cls='d-flex justify-content-between align-items-center mx-auto w-75 mt-4'>
+                <ButtonComp cls='d-flex justify-content-between align-items-center mx-auto w-75 mt-4' event={e => route.push('/profile/change-password')}>
                   <span className="text-start">Change Password</span>
                   <AiOutlineArrowRight className="text-end" />
                 </ButtonComp>
-                <ButtonComp cls='d-flex justify-content-between align-items-center mx-auto w-75 mt-4'>
-                  <span className="text-start">Personal Information</span>
+                <ButtonComp cls='d-flex justify-content-between align-items-center mx-auto w-75 mt-4' event={e => route.push('/profile/change-pin')}>
+                  <span className="text-start">Change PIN</span>
                   <AiOutlineArrowRight className="text-end" />
                 </ButtonComp>
                 <ButtonComp cls='d-flex justify-content-between align-items-center mx-auto w-75 mt-4'>
-                  <span className="text-start">Personal Information</span>
+                  <span className="text-start">Log Out</span>
                   <AiOutlineArrowRight className="text-end" />
                 </ButtonComp>
               </div>
