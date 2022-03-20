@@ -1,13 +1,11 @@
 import http from "../../helper/http";
 
-export const signup = (fullName, email, password) => {
+export const signup = (fullName, email, password, pin) => {
   const param = new URLSearchParams();
   param.append('fullName', fullName);
   param.append('email', email);
   param.append('password', password);
-  const dataRegist = {
-    fullName, email
-  }
+  param.append('pin', pin);
 
   return {
     type: 'REGISTER',
