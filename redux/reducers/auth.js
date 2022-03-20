@@ -89,6 +89,15 @@ export const login = (state = loginState, action) => {
       state.results = {}
       return { ...state };
     }
+    case 'LOGOUT': {
+      state.results = {};
+      state.token = null;
+      state.errMessage = null;
+      state.isError = false;
+      state.isLoading = false;
+      window.localStorage.removeItem('token')
+      return { ...state };
+    }
     default: {
       return  { ...state };
     }
