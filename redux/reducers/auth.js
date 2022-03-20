@@ -58,10 +58,10 @@ export const login = (state = loginState, action) => {
     case 'LOGIN_FULFILLED': {
       const { data } = action.payload
       console.log('redux', data)
-      // state.token = data.results.token;
+      state.token = data.results.token;
       state.isError = false;
       state.isError = false;
-      // window.localStorage.setItem('token', data.results.token);
+      window.localStorage.setItem('token', data.results.token);
       return { ...state };
     }
     case 'LOGIN_REJECTED': {
