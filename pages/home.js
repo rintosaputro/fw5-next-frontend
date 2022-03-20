@@ -6,19 +6,24 @@ import SideBar from '../components/SideBar';
 import { BsArrowUp } from 'react-icons/bs';
 import ChartCard from '../components/ChartCard';
 import HistoriesList from '../components/HistoriesList';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getHistory } from '../redux/actions/histories';
 import histories from '../data dummy/histories';
 import { useRouter } from 'next/router';
+import { getBalance } from '../redux/actions/profile';
+import nominalFormat from '../helper/nominalFormat';
 
 const Home = () => {
   const dispatch = useDispatch();
   const route = useRouter();
+  const { phoneList, balance } = useSelector(state => state);
 
   useEffect(() => {
     // dispatch(getHistory())
-  }, [])
+    const token = window.localStorage.getItem('token');
+    dispatch(getBalance(token))
+  }, [dispatch])
 
   const toHistories = (e) => {
     e.preventDefault();
@@ -41,8 +46,8 @@ const Home = () => {
               <Row className='text-dark'>
                 <Col xs={12} md={6} className='d-flex justify-content-between flex-column'>
                   <div>Balance</div>
-                  <h2>Rp 120.000</h2>
-                  <div>+623434215</div>
+                  <h2>Rp {nominalFormat(balance.results)}</h2>
+                  <div>{phoneList.phone}</div>
                 </Col>
                 <Col xs={12} md={6} className='d-flex justify-content-end'>
                   <div className='d-flex flex-column'>

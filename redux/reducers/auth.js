@@ -95,41 +95,41 @@ export const login = (state = loginState, action) => {
   }
 }
 
-const phoneState = {
-  results: [],
-  phone: null,
-  isLoading: false,
-  isError: false,
-  errMessage: null
-}
+// const phoneState = {
+//   results: [],
+//   phone: null,
+//   isLoading: false,
+//   isError: false,
+//   errMessage: null
+// }
 
-export const phoneList = (state = phoneState, action) => {
-  switch (action.type) {
-    case 'GET_PHONELIST_PENDING': {
-      state.isError = false;
-      state.results = [];
-      state.isLoading = true;
-      return { ...state };
-    }
-    case 'GET_PHONELIST_FULFILLED': {
-      const { data } = action.payload;
-      state.isError = false;
-      state.isError = false;
-      const filt = data.results.filter((data) => data.isPrimary === 1);
-      state.phone = filt[0].number
-      state.results = data.results;
-      return { ...state };
-    }
-    case 'GET_PHONELIST_REJECTED': {
-      const { message } = action.payload.response.data
-      state.isLoading = false;
-      state.results = [];
-      state.isError = true;
-      state.errMessage = message;
-      return { ...state };
-    }
-    default: {
-      return { ...state };
-    }
-  }
-}
+// export const phoneList = (state = phoneState, action) => {
+//   switch (action.type) {
+//     case 'GET_PHONELIST_PENDING': {
+//       state.isError = false;
+//       state.results = [];
+//       state.isLoading = true;
+//       return { ...state };
+//     }
+//     case 'GET_PHONELIST_FULFILLED': {
+//       const { data } = action.payload;
+//       state.isError = false;
+//       state.isError = false;
+//       const filt = data.results.filter((data) => data.isPrimary === 1);
+//       state.phone = filt[0].number
+//       state.results = data.results;
+//       return { ...state };
+//     }
+//     case 'GET_PHONELIST_REJECTED': {
+//       const { message } = action.payload.response.data
+//       state.isLoading = false;
+//       state.results = [];
+//       state.isError = true;
+//       state.errMessage = message;
+//       return { ...state };
+//     }
+//     default: {
+//       return { ...state };
+//     }
+//   }
+// }
