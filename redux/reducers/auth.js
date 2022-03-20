@@ -56,9 +56,10 @@ export const login = (state = loginState, action) => {
     }
     case 'LOGIN_FULFILLED': {
       const { data } = action.payload
-      state.isError = false;
-      state.isError = false;
       state.token = data.results.token;
+      state.isError = false;
+      state.isError = false;
+      window.localStorage.setItem('token', state.token);
       return { ...state };
     }
     case 'LOGIN_REJECTED': {

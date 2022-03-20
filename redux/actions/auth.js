@@ -35,3 +35,10 @@ export const login = (email, password) => {
     payload: http().post('/auth/login', param)
   }
 }
+
+export const getProfile = (token) => {
+  return {
+    type: 'USER_PROFILE',
+    payload: http(token).get('/profile')
+  }
+}
