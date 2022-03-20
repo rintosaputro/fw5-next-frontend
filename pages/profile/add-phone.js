@@ -3,8 +3,9 @@ import Layout from "../../components/Layout";
 import SideBar from "../../components/SideBar";
 import styles from '../../styles/Profile.module.css';
 import ButtonComp from "../../components/ButtonComp";
-import PinInput from "react-pin-input";
 import { useState } from "react";
+import InputAuth from "../../components/InputAuth";
+import { BsTelephone } from 'react-icons/bs';
 
 const ChangePin = () => {
   const [code, setCode] = useState();
@@ -19,23 +20,11 @@ const ChangePin = () => {
           </aside>
           <section className="col-12 col-lg-8">
             <div className={`card px-4 py-5 bg-light ${styles.card}`}>
-              <h4>Change Pin</h4>
-              <p className={`${styles.par} my-4`}>Enter your current 6 digits Zwallet PIN below to continue to the next steps.</p>
+              <h4>Add Phone Number</h4>
+              <p className={`${styles.par} my-4`}>Add at least one phone number for the transfer ID so you can start transfering your money to another user.</p>
               <div className={`${styles.input} mx-auto`}>
-                <PinInput 
-                  length={6} 
-                  focus
-                  ref={(n) => (pin = n)}
-                  onChange={(value, index) => {setCode(value)}}
-                  type="numeric" 
-                  inputMode="number"
-                  style={{padding: '10px'}}  
-                  inputStyle={{borderColor: 'white', color: 'white'}}
-                  inputFocusStyle={{borderColor: 'teal'}}
-                  autoSelect={true}
-                  regexCriteria={/^[ A-Za-z0-9_@./#&+-]*$/}
-                />
-                <ButtonComp cls='mt-5' display='true'>Change Pin</ButtonComp>
+                <InputAuth id='second' IconElement={<BsTelephone className={`${styles.icon} fs-4 position-absolute`}/>} type='number' placehld='phone number' />
+                <ButtonComp cls='mt-5' display='true'>Add Phone Number</ButtonComp>
               </div>
             </div>
           </section>
