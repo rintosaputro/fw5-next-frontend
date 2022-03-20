@@ -6,11 +6,15 @@ import styles from '../../styles/Profile.module.css';
 import { BsPencil } from 'react-icons/bs';
 import ButtonComp from "../../components/ButtonComp";
 import { AiOutlineArrowRight } from 'react-icons/ai'
+import { useRouter } from "next/router";
 
 const Profile = () => {
+  const route = useRouter();
+
   const { login, phoneList } = useSelector(state => state);
   const defaultPict = '/img/defaultPict.png'
   const { picture, fullName } = login.results
+
   return (
     <Layout>
       <main className={`container ${styles.contain}`}>
@@ -35,7 +39,7 @@ const Profile = () => {
                 <div>{phoneList.phone}</div>
               </div>
               <div className="d-flex flex-column justify-content-center mt-3">
-                <ButtonComp cls='d-flex justify-content-between align-items-center mx-auto w-75 mt-4'>
+                <ButtonComp cls='d-flex justify-content-between align-items-center mx-auto w-75 mt-4' event={e => route.push('/profile/info')}>
                   <span className="text-start">Personal Information</span>
                   <AiOutlineArrowRight className="text-end" />
                 </ButtonComp>
