@@ -27,11 +27,7 @@ const Home = () => {
 
   const toHistories = (e) => {
     e.preventDefault();
-    route.push('/histories')
-    const target = document.getElementById('Dashboard');
-    target.classList.add('active-side');
-    target.classList.add('text-primary')
-    target.classList.remove('text-white');
+    route.push('/histories');
   }
 
   return (

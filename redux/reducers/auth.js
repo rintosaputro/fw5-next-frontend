@@ -60,7 +60,7 @@ export const login = (state = loginState, action) => {
       state.token = data.results.token;
       state.isError = false;
       state.isError = false;
-      window.localStorage.setItem('token', state.token);
+      window.localStorage.setItem('token', data.results.token);
       return { ...state };
     }
     case 'LOGIN_REJECTED': {

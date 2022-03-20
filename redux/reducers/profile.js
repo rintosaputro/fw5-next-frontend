@@ -18,8 +18,10 @@ export const phoneList = (state = phoneState, action) => {
       const { data } = action.payload;
       state.isError = false;
       state.isError = false;
-      const filt = data.results.filter((data) => data.isPrimary === 1);
-      state.phone = filt[0].number
+      if (data.results.length > 0) {
+        const filt = data.results.filter((data) => data.isPrimary === 1);
+        state.phone = filt[0].number
+      }
       state.results = data.results;
       return { ...state };
     }
