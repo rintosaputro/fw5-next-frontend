@@ -22,7 +22,7 @@ const Transfer = () => {
               <h4>Search Receiver</h4>
               <form className="d-flex flex-row mb-5">
                 <button className={`${styles.searchBtn} px-3 btn-secondary`}><BiSearchAlt2 className="fs-3"/></button>
-                <input className={`${styles.input} form-control bg-secondary`} type='text' placeHolder='Search receive here' />
+                <input className={`${styles.input} form-control bg-secondary`} type='text' placeholder='Search receive here' />
               </form>
               {receiver.map((data, index) => {
                 return <ReceiverList key={index} event={e => route.push(`/transfer/${index}`)} image={data.image} name={data.name} phone={data.phone} />

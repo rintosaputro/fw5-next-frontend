@@ -38,7 +38,7 @@ const Pin = () => {
       }
       form={status
         ?  <div className="mt-5">
-            <ButtonComp event={e => route.push('/login')} block>Login Now</ButtonComp>
+            <ButtonComp event={e => route.push('/login')} block='true'>Login Now</ButtonComp>
           </div>
         : <form>
           <PinInput 
@@ -55,7 +55,7 @@ const Pin = () => {
           regexCriteria={/^[ A-Za-z0-9_@./#&+-]*$/}
           />
           <div className="mt-5">
-            <ButtonComp event={handleConfirm} block>Confirm</ButtonComp>
+            <ButtonComp event={handleConfirm} block='true'>Confirm</ButtonComp>
           </div>
         </form>
       }
