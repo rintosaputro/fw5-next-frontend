@@ -9,11 +9,15 @@ import { useDispatch, useSelector } from "react-redux";
 import ButtonComp from "../../components/ButtonComp";
 import PinInput from "react-pin-input";
 import { useState } from "react";
+import { AiOutlineCheck, AiOutlineDownload } from 'react-icons/ai';
 
 const Transfer = () => {
   const route = useRouter();
   const dispatch = useDispatch();
   const [code, setCode] = useState();
+  const [success, setSuccess] = useState(false);
+  const [confirm, setConfirm] = useState(false);
+
   let pin;
   const { inputTransfer } = useSelector(state => state);
 
@@ -21,11 +25,13 @@ const Transfer = () => {
 
   const handleCode = (e) => {
     e.preventDefault();
+    setConfirm(true)
     if (code === '123456') {
-      alert('ok')
+      setSuccess(true)
     } else {
-      alert('salah')
+      alert('Wrong input code!')
     }
+    window.scrollTo(0, 0)
     console.log(code)
     // route.push('/transfer/confirmation');
   }
@@ -61,15 +67,40 @@ const Transfer = () => {
           </aside>
           <section className="col-12 col-lg-8">
             <div className="card bg-light p-4">
-              <h4>Transfer To</h4>
-              <ReceiverList image={image} name={name} phone={phone} />
+             {confirm 
+             ? (success ? <div className="d-flex align-items-center justify-content-center flex-column">
+                <div className={`bg-primary d-flex align-items-center justify-content-center my-4 ${styles.pill}`}><AiOutlineCheck className="fs-1"/></div>
+                <h4>Transfer Success</h4>
+               </div>
+               : <div className="d-flex align-items-center justify-content-center flex-column">
+                 <div className={`bg-danger text-white d-flex align-items-center justify-content-center my-4 ${styles.pill}`}><AiOutlineCheck className="fs-1"/></div>
+                 <h4>Transfer Failed</h4>
+                 <p className="px-5 text-center mt-3">We can’t transfer your money at the moment, we recommend you to check your internet connection and try again.</p>
+               </div> 
+               )
+             : <div>
+                <h4>Transfer To</h4>
+                <ReceiverList image={image} name={name} phone={phone} />
+              </div>}
               <h4 className="my-5">Details</h4>
               {listDetail('Amount', `Rp${Number(amount).toLocaleString('id-ID')}`)}
               {listDetail('Balance Left', `Rp${Number(balanceLeft).toLocaleString('id-ID')}`)}
               {listDetail('Date & Time', date)}
               {listDetail('Notes', notes)}
+              {confirm &&
+              <div className="mt-5">
+                <h4>Transfer To</h4>
+                <ReceiverList image={image} name={name} phone={phone} />
+              </div>}
               <div className="mt-5 text-end">
-                <ButtonComp type='button' data-bs-toggle="modal" data-bs-target="#exampleModal">Continue</ButtonComp>
+                {success && <ButtonComp variant="secondary me-4">
+                  <AiOutlineDownload className=""/> Download PDF
+                </ButtonComp>}
+                {confirm && success ?
+                <ButtonComp event={e => route.push('/home')}>Back to Home</ButtonComp>
+                : <ButtonComp type='button' data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  {confirm && !success ? 'Try Again' : 'Continue'}
+                </ButtonComp>}
               </div>
               <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered">
