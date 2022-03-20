@@ -50,7 +50,7 @@ const Login = () => {
       <form>
         <InputAuth id='email' IconElement={<AiOutlineMail className={`${styles.icon} fs-4 position-absolute`}/>} type='email' placehld='e-mail' />
         <InputAuth id='password' IconElement={<VscLock className={`${styles.icon} fs-4 position-absolute`}/>} type='password' placehld='password'  />
-        {pwd && <div>The Password must be at least 6 characters long, use upper and lower case</div>}
+        {pwd && <div className="text-danger">The Password must be at least 6 characters long, use upper and lower case</div>}
       </form>
       <Link href='/forgot-password'>
         <a className='d-flex justify-content-end text-decoration-none my-5'>Forgot password?</a>
