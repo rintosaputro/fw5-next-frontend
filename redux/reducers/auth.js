@@ -99,6 +99,7 @@ const forgotState = {
   message: null,
   isLoading: false,
   isError: false,
+  isSuccess: false
 }
 
 export const forgotPassword = (state = forgotState, action) => {
@@ -107,12 +108,14 @@ export const forgotPassword = (state = forgotState, action) => {
       state.isError = false;
       state.message = null;
       state.isLoading = true;
+      state.isSuccess = false;
       return { ...state };
     }
     case 'FORGOT_PASSWORD': {
       const { data } = action.payload;
       state.isLoading = false;
       state.isError = false;
+      state.isSuccess = true;
       state.message = data.message;
       return { ...state };
     }
@@ -120,6 +123,7 @@ export const forgotPassword = (state = forgotState, action) => {
       const { message } = action.payload.response.data;
       state.isLoading = false;
       state.message = message;
+      state.isSuccess = false;
       state.isError = true;
       return { ...state };
     }
