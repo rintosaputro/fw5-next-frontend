@@ -30,29 +30,6 @@ const TopUp = () => {
             </div>
           </section>
         </Row>
-
-        <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          Launch demo modal
-        </button>
-        <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div className="modal-dialog modal-dialog-centered">
-            <div className="modal-content bg-primary text-dark">
-              <div className="modal-header border-bottom-0">
-                <h5 className="modal-title" id="exampleModalLabel">Topup</h5>
-                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <p className="ps-3">Enter the amount of money, and click submit</p>
-              <div className="modal-body">
-                <form>
-                  <input className={`form-control text-center ${styles.inputModal}`} type='number' placeholder="___________" />
-                </form>
-              </div>
-              <div className="modal-footer border-top-0">
-                <button type="button" className="btn btn-light" data-bs-dismiss="modal">Submit</button>
-              </div>
-            </div>
-          </div>
-        </div>
       </main>
     </Layout>
   )
