@@ -10,8 +10,7 @@ import { useSelector } from "react-redux";
 const Navigation = () => {
   const route = useRouter();
   
-  const { login } = useSelector(state => state);
-  // const token = window.localStorage.getItem('token');
+  const { login, phoneList } = useSelector(state => state);
   const dataUser = {
     image: '/img/review-2.jpg',
     name: 'Robert Chandler',
@@ -20,6 +19,7 @@ const Navigation = () => {
 
   const { picture, fullName } = login.results;
   const defaultPict = '/img/defaultPict.png';
+  const phone = phoneList.results.filter((data) => data.isPrimary === 1);
 
   const show = (e) => {
     e.preventDefault();
@@ -31,11 +31,12 @@ const Navigation = () => {
     }
   }
 
-  // const handleBtn = (e, route) => {
-  //   e.preventDefault();
-  //   console.log('test')
-  //   route.push(route)
-  // }
+  const handleBtn = (e, route) => {
+    e.preventDefault();
+    // console.log('test')
+    // route.push(route)
+    console.log(phone[0].number);
+  }
 
   return (
     <nav className="navbar navbar-expand-md navbar-light bg-light fixed-top py-4">
@@ -62,8 +63,8 @@ const Navigation = () => {
                 <style jsx>
                   {`
                   .photo-profile {
-                    width: 60px;
-                    height: 60px;
+                    width: 50px;
+                    height: 50px;
                     background-position: center;
                     background-size: cover;
                     background-image: url(${picture ? picture : defaultPict});
@@ -76,9 +77,9 @@ const Navigation = () => {
             </li>
             <li className='mx-3'>
               <h4 className="fw-bold">{fullName}</h4>
-              <div>{dataUser.phone}</div>
+              <div>{phone[0].number}</div>
             </li>
-            <li className="my-auto">
+            <li onClick={handleBtn} className="my-auto">
               <MdNotificationsNone className='text-white fs-2 fw-bold' />
             </li>
             </>

@@ -43,7 +43,8 @@ const loginState = {
   results: {},
   token: null,
   isLoading: false,
-  isError: false
+  isError: false,
+  errMessage: null,
 }
 
 export const login = (state = loginState, action) => {
@@ -63,8 +64,10 @@ export const login = (state = loginState, action) => {
       return { ...state };
     }
     case 'LOGIN_REJECTED': {
+      const {message} = action.payload.response.data
       state.isLoading = false;
       state.token = null;
+      state.errMessage = message;
       state.isError = true;
       return  { ...state };
     }
@@ -92,4 +95,38 @@ export const login = (state = loginState, action) => {
   }
 }
 
-// export default registerUser;
+const phoneState = {
+  results: [],
+  isLoading: false,
+  isError: false,
+  errMessage: null
+}
+
+export const phoneList = (state = phoneState, action) => {
+  switch (action.type) {
+    case 'GET_PHONELIST_PENDING': {
+      state.isError = false;
+      state.results = [];
+      state.isLoading = true;
+      return { ...state };
+    }
+    case 'GET_PHONELIST_FULFILLED': {
+      const { data } = action.payload;
+      state.isError = false;
+      state.isError = false;
+      state.results = data.results;
+      return { ...state };
+    }
+    case 'GET_PHONELIST_REJECTED': {
+      const { message } = action.payload.response.data
+      state.isLoading = false;
+      state.results = [];
+      state.isError = true;
+      state.errMessage = message;
+      return { ...state };
+    }
+    default: {
+      return { ...state };
+    }
+  }
+}
