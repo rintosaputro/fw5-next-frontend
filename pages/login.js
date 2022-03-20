@@ -8,9 +8,12 @@ import ButtonComp from "../components/ButtonComp";
 import { login } from "../redux/actions/auth";
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import checkPassword from "../helper/checkPwd";
 
 const Login = () => {
+  const [pwd, setPwd] = useState(false)
+
   const route = useRouter();
   const dispatch = useDispatch();
   const { login : loginState } = useSelector(state => state);
@@ -30,7 +33,14 @@ const Login = () => {
     if (!email || !password) {
       alert('Data must be filled')
     }
-    dispatch(login(email, password));
+    if (!checkPassword(password)) {
+      setPwd(true)
+    }
+    if (email && checkPassword(password)) {
+      setPwd(false)
+      alert('ok')
+      dispatch(login(email, password));
+    }
   }
 
   return (
@@ -40,6 +50,7 @@ const Login = () => {
       <form>
         <InputAuth id='email' IconElement={<AiOutlineMail className={`${styles.icon} fs-4 position-absolute`}/>} type='email' placehld='e-mail' />
         <InputAuth id='password' IconElement={<VscLock className={`${styles.icon} fs-4 position-absolute`}/>} type='password' placehld='password'  />
+        {pwd && <div>The Password must be at least 6 characters long, use upper and lower case</div>}
       </form>
       <Link href='/forgot-password'>
         <a className='d-flex justify-content-end text-decoration-none my-5'>Forgot password?</a>
