@@ -1,4 +1,5 @@
 import http from "../../helper/http";
+const callbackUrl = process.env.CALLBACK_URL
 
 export const signup = (fullName, email, password, pin) => {
   const param = new URLSearchParams();
@@ -41,9 +42,11 @@ export const getProfile = (token) => {
   }
 }
 
-// export const getPhoneList = (token) => {
-//   return {
-//     type: 'GET_PHONELIST',
-//     payload: http(token).get('/profile/phones')
-//   }
-// }
+export const forgotPassword = (email) => {
+  const param = new URLSearchParams();
+  param.append('email', email);
+  return {
+    type: 'FORGOT_PASSWORD',
+    payload: http().post(`/auth/forgot-password?callback_url=${callbackUrl}`, param)
+  }
+}

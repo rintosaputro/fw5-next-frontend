@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 import histories from "./histories";
 import inputTransfer from "./transfer";
 // import registerUser from "./auth";
-import { registerUser, login } from "./auth";
+import { registerUser, login, forgotPassword } from "./auth";
 import { phoneList, balance } from './profile';
 
 const rootReducers = combineReducers({
@@ -10,6 +10,7 @@ const rootReducers = combineReducers({
   inputTransfer,
   registerUser,
   login,
+  forgotPassword,
   phoneList,
   balance
 })

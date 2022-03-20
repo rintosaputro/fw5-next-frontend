@@ -3,6 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   env: {
     API_URL: process.env.API_URL,
+    CALLBACK_URL: process.env.CALLBACK_URL,
   }
 }
 

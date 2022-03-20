@@ -57,7 +57,6 @@ export const login = (state = loginState, action) => {
     }
     case 'LOGIN_FULFILLED': {
       const { data } = action.payload
-      console.log('redux', data)
       state.token = data.results.token;
       state.isError = false;
       state.isError = false;
@@ -96,41 +95,40 @@ export const login = (state = loginState, action) => {
   }
 }
 
-// const phoneState = {
-//   results: [],
-//   phone: null,
-//   isLoading: false,
-//   isError: false,
-//   errMessage: null
-// }
+const forgotState = {
+  message: null,
+  isLoading: false,
+  isError: false,
+  isSuccess: false
+}
 
-// export const phoneList = (state = phoneState, action) => {
-//   switch (action.type) {
-//     case 'GET_PHONELIST_PENDING': {
-//       state.isError = false;
-//       state.results = [];
-//       state.isLoading = true;
-//       return { ...state };
-//     }
-//     case 'GET_PHONELIST_FULFILLED': {
-//       const { data } = action.payload;
-//       state.isError = false;
-//       state.isError = false;
-//       const filt = data.results.filter((data) => data.isPrimary === 1);
-//       state.phone = filt[0].number
-//       state.results = data.results;
-//       return { ...state };
-//     }
-//     case 'GET_PHONELIST_REJECTED': {
-//       const { message } = action.payload.response.data
-//       state.isLoading = false;
-//       state.results = [];
-//       state.isError = true;
-//       state.errMessage = message;
-//       return { ...state };
-//     }
-//     default: {
-//       return { ...state };
-//     }
-//   }
-// }
+export const forgotPassword = (state = forgotState, action) => {
+  switch (action.type) {
+    case 'FORGOT_PASSWORD_PENDING': {
+      state.isError = false;
+      state.message = null;
+      state.isLoading = true;
+      state.isSuccess = false;
+      return { ...state };
+    }
+    case 'FORGOT_PASSWORD': {
+      const { data } = action.payload;
+      state.isLoading = false;
+      state.isError = false;
+      state.isSuccess = true;
+      state.message = data.message;
+      return { ...state };
+    }
+    case 'FORGOT_PASSWORD': {
+      const { message } = action.payload.response.data;
+      state.isLoading = false;
+      state.message = message;
+      state.isSuccess = false;
+      state.isError = true;
+      return { ...state };
+    }
+    default: {
+      return { ...state };
+    }
+  }
+}
