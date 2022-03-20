@@ -1,13 +1,20 @@
-import AuthPage from "../components/AuthPage";
-import InputAuth from "../components/InputAuth";
+import AuthPage from "../../components/AuthPage";
+import InputAuth from "../../components/InputAuth";
 import { AiOutlineMail } from 'react-icons/ai';
-import styles from '../styles/Auth.module.css';
-import ButtonComp from "../components/ButtonComp";
-import { useState } from "react";
+import styles from '../../styles/Auth.module.css';
+import ButtonComp from "../../components/ButtonComp";
+import { useState, useEffect } from "react";
 import { VscLock } from 'react-icons/vsc';
+import { useRouter } from 'next/router';
 
 const ForgotPassword = () => {
   const [status, setStatus] = useState('');
+
+  const route = useRouter();
+
+  useEffect(() => {
+    console.log(route.query.otp)
+  })
 
   const handleConfirm = (e) => {
     e.preventDefault();
@@ -24,7 +31,7 @@ const ForgotPassword = () => {
         </>
       }
       form={
-        status ?
+        route.query.otp ?
         <form>
           <InputAuth IconElement={<VscLock className={`${styles.icon} fs-4 position-absolute`}/>} type='password' placehld='new password'  />
           <InputAuth IconElement={<VscLock className={`${styles.icon} fs-4 position-absolute`}/>} type='password' placehld='confirm new password'  />
