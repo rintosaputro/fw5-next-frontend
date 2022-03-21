@@ -76,3 +76,40 @@ export const balance = (state = balanceState, action) => {
   }
 }
 
+const allState = {
+  results: [],
+  isLoading: false,
+  isError: false,
+  errMessage: null
+}
+
+export const allUser = (state = allState, action) => {
+  switch (action.type) {
+    case 'GET_ALL_USER_PENDING': {
+      state.isError = false;
+      state.results = [];
+      state.errMessage = null;
+      state.isLoading = true;
+      return { ...state };
+    }
+    case 'GET_ALL_USER_FULFILLED': {
+      const { data } = action.payload;
+      state.isError = false;
+      state.isError = false;
+      state.errMessage = null;
+      state.results = data.results;
+      return { ...state };
+    }
+    case 'GET_ALL_USER_REJECTED': {
+      const { message } = action.payload.response.data
+      state.isLoading = false;
+      state.results = [];
+      state.isError = true;
+      state.errMessage = message;
+      return { ...state };
+    }
+    default: {
+      return { ...state };
+    }
+  }
+}

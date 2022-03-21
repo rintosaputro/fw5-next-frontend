@@ -20,3 +20,10 @@ export const getPhoneList = (token) => {
     payload: http(token).get('/profile/phones')
   }
 }
+
+export const getAllUser = (token) => {
+  return {
+    type: 'GET_ALL_USER',
+    payload: http(token).get('/users')
+  }
+}

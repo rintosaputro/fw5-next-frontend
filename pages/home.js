@@ -11,24 +11,34 @@ import { useEffect } from 'react';
 import { getHistory } from '../redux/actions/histories';
 import histories from '../data dummy/histories';
 import { useRouter } from 'next/router';
-import { getBalance } from '../redux/actions/profile';
+import { getBalance, getAllUser } from '../redux/actions/profile';
 import nominalFormat from '../helper/nominalFormat';
+import histoyList from '../helper/historyList';
 
 const Home = () => {
   const dispatch = useDispatch();
   const route = useRouter();
-  const { phoneList, balance } = useSelector(state => state);
+  const { phoneList, balance, histories: historyData, allUser } = useSelector(state => state);
 
   useEffect(() => {
-    // dispatch(getHistory())
     const token = window.localStorage.getItem('token');
     dispatch(getBalance(token))
+    dispatch(getHistory(token))
+    dispatch(getAllUser(token))
   }, [dispatch])
 
   const toHistories = (e) => {
     e.preventDefault();
     route.push('/histories');
   }
+
+  const transactionHistories = histoyList(historyData, allUser).reverse();
+  const test = (e) => {
+    e.preventDefault();
+    console.log(transactionHistories[0][0])
+  }
+  const defaultPict = '/img/defaultPict.png';
+
 
   return (
     <Layout>
@@ -53,12 +63,10 @@ const Home = () => {
                         <span>Transfer</span>
                       </a>
                     </Link>
-                    <Link href='/top-up' className=' d-flex flex-row align-items-center my-2'>
-                      <a className='text-decoration-none text-white my-2 py-3 px-5 bg-light btn'>
-                        <BsArrowUp className='fs-5 me-2'/>
-                        <span>Top Up</span>
-                      </a>
-                    </Link>
+                    <button onClick={test} className=' d-flex flex-row align-items-center my-2 text-white my-2 py-3 px-5 bg-light btn'>
+                      <BsArrowUp className='fs-5 me-2'/>
+                      <span>Top Up</span>
+                    </button>
                   </div>
                 </Col>
               </Row>
@@ -72,8 +80,11 @@ const Home = () => {
               <Col xs={12} lg={6} className='mt-3'>
                 <div onClick={toHistories} className={`${styles.histories} card bg-light p-3 h-100`}>
                   <h4>Transaction History</h4>
-                  {histories.map((data, index) => {
+                  {/* {histories.map((data, index) => {
                     return (index < 4 &&  <HistoriesList key={index} image={data.image} name={data.name} status={data.status} total={data.total} />)
+                  })} */}
+                  {transactionHistories.map((data, index) => {
+                    return (index < 4 &&  <HistoriesList key={index} image={data[0].picture || defaultPict} name={data[0].fullName} status={data.mutation_type.name} total={data.amount} />)
                   })}
                 </div>
               </Col>
