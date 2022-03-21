@@ -1,7 +1,7 @@
 import http from "../../helper/http"
-export const getHistory = () => {
+export const getHistory = (token) => {
   return {
     type: 'GET_HISTORIES',
-    payload: http().get('/api/character')
+    payload: http(token).get('/transactions/history')
   }  
 }
