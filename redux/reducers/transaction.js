@@ -13,6 +13,7 @@ export const topUp = (state = topupState, action) => {
       state.results = {};
       state.message = null;
       state.isLoading = true;
+      state.isSuccess = false;
       return { ...state };
     }
     case 'TOPUP_FULFILLED': {
@@ -30,6 +31,7 @@ export const topUp = (state = topupState, action) => {
       state.isLoading = false;
       state.results = {};
       state.message = message;
+      state.isSuccess = false;
       return { ...state };
     }
     default: {

@@ -27,7 +27,7 @@ const SideBar = ({cls, idModal = 'modalSide'}) => {
     if (topUpData.isSuccess) {
       setTopupSuccess(true)
     }
-  }, [topUpData])
+  }, [topUpData.isSuccess])
 
   const dataSide = [
     {icon: BsGrid, desc: 'Dashboard', to: '/home'},
@@ -78,8 +78,9 @@ const SideBar = ({cls, idModal = 'modalSide'}) => {
               data-bs-target={data.to === '/top-up' ? `#${idModal}` : ''} 
               className={`${routes[1] === data.to[1] && routes[2] === data.to[2] ? 'active-side text-primary': 'text-white'} side-side text-decoration-none my-4 ps-2 d-flex flex-row align-items-center`}>
               <data.icon className='fs-5 me-2'/>
-              <span onClick={data.to = '/top-up' ? topUpLink : ''}>{data.desc}</span>
-            </a>}
+              <span>{data.desc}</span>
+              </a>
+            }
           </Link>
         })}
         <Link href='/login' className=' d-flex flex-row align-items-center my-3'>
