@@ -5,6 +5,7 @@ import inputTransfer from "./transfer";
 import { registerUser, login, forgotPassword, changePassword } from "./auth";
 import { phoneList, balance, allUser } from './profile';
 import { topUp } from "./transaction";
+import users from "./users";
 
 const rootReducers = combineReducers({
   histories,
@@ -16,7 +17,8 @@ const rootReducers = combineReducers({
   phoneList,
   allUser,
   balance,
-  topUp
+  topUp,
+  users
 })
 
 export default rootReducers;

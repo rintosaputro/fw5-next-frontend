@@ -5,6 +5,7 @@ import { Provider, useDispatch, useSelector } from 'react-redux';
 import { useEffect } from "react";
 import { getProfile } from '../redux/actions/auth';
 import { getPhoneList } from '../redux/actions/profile';
+import { getUsers } from '../redux/actions/users';
 
 const MyComponent = ({children}) => {
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ const MyComponent = ({children}) => {
       });
       dispatch(getProfile(token));
       dispatch(getPhoneList(token));
+      dispatch(getUsers(token));
     }
   }, [login.token])
   return (<>{children}</>)
