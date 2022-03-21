@@ -29,3 +29,10 @@
 .card {
   min-height: 500px;
 }
+.file {
+  height: 50px;
+  /* width: 90%; */
+}
+.editInput::placeholder {
+  color: white;
+}
