@@ -55,8 +55,8 @@ const Transfer = () => {
     phone: "+62 81345142",
   }
 
-  // const {image, name, phone, amount, balanceLeft, date, notes} = inputTransfer.results;
-  const {image, name, phone, amount, balanceLeft, date, notes} = dataDummy;
+  const {image, name, phone, amount, balanceLeft, date, notes} = inputTransfer.results;
+  // const {image, name, phone, amount, balanceLeft, date, notes} = dataDummy;
 
   return (
     <Layout>

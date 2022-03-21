@@ -10,15 +10,17 @@ import { useEffect } from "react";
 import { BsPencil } from 'react-icons/bs';
 import ButtonComp from "../../components/ButtonComp";
 import { inputTransfer } from "../../redux/actions/transfer";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import getDate from "../../helper/getDate";
 
 const Transfer = () => {
   const route = useRouter();
   const dispatch = useDispatch();
 
+  const { inputTransfer: inputData } = useSelector(state => state);
+
   const data = receiver[route.query.id]
-  const available = 150000
+  const available = inputData.balance || 150000
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -48,7 +50,7 @@ const Transfer = () => {
             <div className="card bg-light p-4">
               <h4>Transfer Money</h4>
                {/* {<ReceiverList image={data.image} name={data.name} phone={data.phone} />} */}
-               <ReceiverList name='Jamal Tes' phone={Number('0898678685')} />
+               <ReceiverList image={data.image} name={data.name || 'name'} phone={data.phone || '080000'} />
                <p className="my-5">Type the amount you want to transfer and then <br/> press continue to the next steps.</p>
                <form>
                  <input id='nominal' type='number' placeholder="0.00" className={`${styles.input} form-control mb-4 fs-1 text-white fw-bold text-center w-100 bg-light`} />
