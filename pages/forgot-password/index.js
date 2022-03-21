@@ -24,7 +24,10 @@ const ForgotPassword = () => {
 
   useEffect(() => {
     console.log(route.query.otp)
-  })
+    if (changeData.isSuccess) {
+      route.push('/login')
+    }
+  }, [changeData])
 
   const handleConfirm = (e) => {
     e.preventDefault();

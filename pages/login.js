@@ -33,12 +33,11 @@ const Login = () => {
     if (!email || !password) {
       alert('Data must be filled')
     }
-    if (!checkPassword(password)) {
-      setPwd(true)
-    }
-    if (email && checkPassword(password)) {
+    // if (!checkPassword(password)) {
+    //   setPwd(true)
+    // }
+    if (email && password) {
       setPwd(false)
-      alert('ok')
       dispatch(login(email, password));
     }
   }

@@ -7,6 +7,7 @@ import { BsPencil } from 'react-icons/bs';
 import ButtonComp from "../../components/ButtonComp";
 import { AiOutlineArrowRight } from 'react-icons/ai'
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 const Profile = () => {
   const route = useRouter();
@@ -25,29 +26,39 @@ const Profile = () => {
     route.push('/login');
   }
 
+  const loadFile = (e) => {
+    e.preventDefault();
+    const image = document.getElementById('picture')
+    document.getElementById('fileUpload').innerHTML = 'File: ' + e.target.files[0].name
+  }
+
   return (
     <Layout>
       <main className={`container ${styles.contain}`}>
         <Row>
-          <aside className="col-12 col-lg-4">
+          <aside className="col-12 col-lg-4 d-none d-lg-block">
             <SideBar />
           </aside>
           <section className="col-12 col-lg-8">
             <div className="card px-4 py-5 bg-light">
-              <div className={`${styles.pict} mx-auto`} style={{backgroundImage: `url(${picture || defaultPict})`}} />
-              <div className="position-relative">
-                <div className="d-flex justify-content-center align-items-center mt-3">
-                  <button className="btn text-white p-0 me-2"><BsPencil/></button>
-                  <span>Edit</span>
-                </div>
+              <div className={`${styles.pict} mx-auto`} style={{backgroundImage: `url(${picture || defaultPict})`}} id='picture'>
                 <form>
-                  <input id='image' style={{zIndex: 134, right: '134px', opacity: '0', cursor: 'pointer'}} className='bottom-0 position-absolute' type="file" />
+                  <input id='image' style={{zIndex: 134, right: '134px', opacity: '0', cursor: 'pointer'}} className={`${styles.file}`} onChange={loadFile} type="file" />
                 </form>
               </div>
-              <div className="text-center my-3">
-                <h4>{fullName}</h4>
-                <div>{phoneList.phone}</div>
+              <div id='fileUpload' className="text-center my-1"></div>
+              <div className="position-relative">
+                <button className="btn d-flex justify-content-center text-white align-items-center mx-auto mt-3">
+                  <div className="text-white p-0 me-2"><BsPencil/></div>
+                  <span>Edit</span>
+                </button>
               </div>
+              <form className="text-center my-3">
+                <input type='text' placeholder={fullName || 'name user'} className={`text-center text-white bg-light form-control border-0 fs-3 ${styles.editInput}`} />
+                <input type='tel' pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder={phoneList.phone || '08------'} className={`text-center text-white bg-light form-control border-0 fs-3 ${styles.editInput}`} />
+                {/* <h4>{fullName || 'name user'}</h4> */}
+                {/* <div>{phoneList.phone}</div> */}
+              </form>
               <div className="d-flex flex-column justify-content-center mt-3">
                 <ButtonComp cls='d-flex justify-content-between align-items-center mx-auto w-75 mt-4' event={e => route.push('/profile/info')}>
                   <span className="text-start">Personal Information</span>

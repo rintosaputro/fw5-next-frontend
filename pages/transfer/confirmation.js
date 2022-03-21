@@ -55,8 +55,8 @@ const Transfer = () => {
     phone: "+62 81345142",
   }
 
-  // const {image, name, phone, amount, balanceLeft, date, notes} = inputTransfer.results;
-  const {image, name, phone, amount, balanceLeft, date, notes} = dataDummy;
+  const {image, name, phone, amount, balanceLeft, date, notes} = inputTransfer.results;
+  // const {image, name, phone, amount, balanceLeft, date, notes} = dataDummy;
 
   return (
     <Layout>
@@ -98,11 +98,11 @@ const Transfer = () => {
                 </ButtonComp>}
                 {confirm && success ?
                 <ButtonComp event={e => route.push('/home')}>Back to Home</ButtonComp>
-                : <ButtonComp type='button' data-bs-toggle="modal" data-bs-target="#exampleModal">
+                : <ButtonComp type='button' data-bs-toggle="modal" data-bs-target="#exampleModal2">
                   {confirm && !success ? 'Try Again' : 'Continue'}
                 </ButtonComp>}
               </div>
-              <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div className="modal fade" id="exampleModal2" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered">
                   <div className={`modal-content bg-primary text-dark ${styles.modal}`}>
                     <div className={`modal-header ${styles.borderNone}`}>

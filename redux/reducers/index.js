@@ -12,6 +12,7 @@ const rootReducers = combineReducers({
   registerUser,
   login,
   forgotPassword,
+  changePassword,
   phoneList,
   balance,
   topUp

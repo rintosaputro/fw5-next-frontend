@@ -15,7 +15,7 @@ const ChangePin = () => {
     <Layout>
       <main className={`container ${styles.contain}`}>
         <Row>
-          <aside className="col-12 col-lg-4">
+          <aside className="col-12 col-lg-4 d-none d-lg-block">
             <SideBar />
           </aside>
           <section className="col-12 col-lg-8">

@@ -13,7 +13,7 @@ const AuthPage = ({form, info}) => {
   return (
     <section>
       <Row>
-        <Col sm={12} lg={6} className={styles.left}>
+        <Col sm={12} lg={6} className={`d-none d-lg-block ${styles.left}`}>
           <div className="p-5">
             <h1 className='fs-1'>Zwallet</h1>
             <Image src='/img/auth-phone.png' alt='phone' layout="responsive" width={300} height={300}/>

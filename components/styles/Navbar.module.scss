@@ -4,8 +4,37 @@
 .nav li {
   list-style-type: none;
 }
-@media all and (max-width: 768px) {
+.listNav {
+  display: flex;
+  flex-direction: row;
+}
+.sideBar {
+  display: none;
+}
+@media all and (max-width: 992px) {
+  .sideBar {
+    display: block;
+  }
+  .listNav {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .btnAuth {
+    width: 100%;
+  }  
   .btncontainer {
+    width: 100%;
+    flex-direction: column !important;
+  }
+}
+@media all and (max-width: 768px) {
+  .listNav {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .btnAuth {
     width: 100%;
   }
 }

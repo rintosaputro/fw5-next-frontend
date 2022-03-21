@@ -72,7 +72,7 @@ const ChartCard = ({labels, dataChart, income = 0, expense = 0}) => {
             <div>Income</div>
             <div className='fw-bold'>Rp. {Number(income).toLocaleString('id-ID')}</div>
           </Col>
-          <Col xs={12} md={6} className='d-flex mt-3 mt-md-0 flex-column justify-content-end align-items-end'>
+          <Col xs={12} md={6} className='d-flex mt-3 mt-md-0 flex-column justify-content-end'>
             <div>
               <BsArrowUp className='text-danger fw-bold fs-4' />
               <div>Expense</div>
