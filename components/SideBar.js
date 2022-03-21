@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from 'react';
 import styles from '../styles/Transfer.module.css';
 
-const SideBar = () => {
+const SideBar = (cls) => {
   const route = useRouter();
   const [routes, setRoutes] = useState('/home');
 
@@ -28,7 +28,7 @@ const SideBar = () => {
   }
 
   return (
-    <div className='card p-4 bg-light position-relative h-100'>
+    <div className={`${cls} card p-4 bg-light position-relative h-100 ${styles.asideCont}`}>
         {dataSide.map((data, index) => {
           return <Link href={data.to} key={data.desc} className=' d-flex flex-row align-items-center my-3'>
             {route.pathname === '/histories' ? 

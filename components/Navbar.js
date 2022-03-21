@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { MdNotificationsNone } from 'react-icons/md'
 import { useSelector } from "react-redux";
+import SideBar from "./SideBar";
 
 const Navigation = () => {
   const route = useRouter();
@@ -32,7 +33,7 @@ const Navigation = () => {
 
   return (
     <>
-    <nav className="navbar navbar-expand-md navbar-light bg-light fixed-top py-4">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top py-4">
       <div className="container">
         <Link href='/home'>
           <a className="navbar-brand fw-bold text-white fs-2">Zwallet</a>
@@ -76,14 +77,19 @@ const Navigation = () => {
                 <MdNotificationsNone className='text-white fs-2 fw-bold' />
               </li>
               </>
-            : <>
-              <li className="nav-item me-0 my-4 my-md-0 me-md-4">
-                <ButtonComp block='true' variant="outline-primary" event={e => route.push('/login')}>Login</ButtonComp>
+            : <div className={style.listNav}>
+              <li className={`nav-item me-0 my-4 my-lg-0 me-lg-4`}>
+                <ButtonComp cls={style.btnAuth} variant="outline-primary me-0 me-lg-3" event={e => route.push('/login')}>Login</ButtonComp>
               </li>
               <li className="nav-item">
-                <ButtonComp block='true' variant="secondary" event={e => route.push('/signup')} cls='text-dark'>Signup</ButtonComp>
+                <ButtonComp cls={`text-dark ${style.btnAuth}`} variant="secondary" event={e => route.push('/signup')}>Signup</ButtonComp>
               </li>
-              </>}
+              </div>}
+              <br/>
+              
+              {login.token && <span className={style.sideBar}>
+                <SideBar />
+              </span>}
           </ul>
         </div>
       </div>
