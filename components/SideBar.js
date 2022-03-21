@@ -6,10 +6,16 @@ import { MdOutlineLogout } from 'react-icons/md';
 import { useRouter } from "next/router";
 import { useEffect, useState } from 'react';
 import styles from '../styles/Transfer.module.css';
+import { topUp } from '../redux/actions/transaction';
+import { useDispatch } from 'react-redux';
 
 const SideBar = (cls) => {
   const route = useRouter();
   const [routes, setRoutes] = useState('/home');
+  const [data, setData] = useState(true);
+  const [success, setSuccess] = useState(false)
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setRoutes(route.pathname)
@@ -24,7 +30,15 @@ const SideBar = (cls) => {
 
   const handleTopup = (e) => {
     e.preventDefault();
-    
+    const nominal = document.getElementById('topUp').value;
+    const token = window.localStorage.getItem('token');
+    if (nominal) {
+      setData(true);
+      setSuccess(true);
+      dispatch(topUp(token, nominal))
+    } else {
+      setData(false);
+    }
   }
 
   return (
@@ -58,11 +72,12 @@ const SideBar = (cls) => {
               <p className="ps-3">Enter the amount of money, and click submit</p>
               <div className="modal-body">
                 <form>
-                  <input className={`form-control text-center ${styles.inputModal}`} type='number' placeholder="___________" />
+                  <input id='topUp' className={`form-control text-center ${styles.inputModal}`} type='number' placeholder="___________" />
+                  {!data && <div className='text-danger'>Data must be filled</div>}
                 </form>
               </div>
               <div className="modal-footer border-top-0">
-                <button onClick={e => route.push('/top-up')} type="button" className="btn btn-light" data-bs-dismiss="modal">Submit</button>
+                <button onClick={handleTopup} type="button" className="btn btn-light" data-bs-dismiss={success ? "modal" : ''}>Submit</button>
               </div>
             </div>
           </div>
