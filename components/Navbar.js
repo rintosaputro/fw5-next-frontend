@@ -36,7 +36,7 @@ const Navigation = () => {
     <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top py-4">
       <div className="container">
         <Link href='/home'>
-          <a className="navbar-brand fw-bold text-white fs-2">Zwallet</a>
+          <a className="navbar-brand fw-bold text-white fs-2">Rwallet</a>
         </Link>
         <button onClick={show}
           className="navbar-toggler bg-secondary"
