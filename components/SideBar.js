@@ -7,19 +7,27 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from 'react';
 import styles from '../styles/Transfer.module.css';
 import { topUp } from '../redux/actions/transaction';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-const SideBar = (cls) => {
+const SideBar = ({cls, idModal = 'modalSide'}) => {
   const route = useRouter();
   const [routes, setRoutes] = useState('/home');
   const [data, setData] = useState(true);
-  const [success, setSuccess] = useState(false)
+  const [success, setSuccess] = useState(false);
+  const [topupSuccess, setTopupSuccess] = useState(false)
+
+  const { topUp: topUpData } = useSelector(state => state);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     setRoutes(route.pathname)
   }, [route.pathname])
+  useEffect(() => {
+    if (topUpData.isSuccess) {
+      setTopupSuccess(true)
+    }
+  }, [topUpData])
 
   const dataSide = [
     {icon: BsGrid, desc: 'Dashboard', to: '/home'},
@@ -30,14 +38,30 @@ const SideBar = (cls) => {
 
   const handleTopup = (e) => {
     e.preventDefault();
-    const nominal = document.getElementById('topUp').value;
+    const nominal = document.getElementById(`${idModal}Input`).value;
     const token = window.localStorage.getItem('token');
+    if (topupSuccess) {
+      setTopupSuccess(false)
+    }
     if (nominal) {
       setData(true);
       setSuccess(true);
       dispatch(topUp(token, nominal))
     } else {
       setData(false);
+    }
+    console.log(nominal)
+  }
+
+  const topUpLink = (e) => {
+    e.preventDefault();
+    setTopupSuccess(false);
+  }
+  const handleClose = (e) => {
+    e.preventDefault();
+    setTopupSuccess(false);
+    if (route.pathname !== '/top-up') {
+      route.push('/top-up')
     }
   }
 
@@ -50,9 +74,11 @@ const SideBar = (cls) => {
                 <data.icon className='fs-5 me-2'/>
                 <span>{data.desc}</span>
               </a>  
-            : <a id={data.desc} data-bs-toggle={data.to === '/top-up' ? "modal" : ''} data-bs-target={data.to === '/top-up' ? "#exampleModal" : ''} className={`${routes[1] === data.to[1] && routes[2] === data.to[2] ? 'active-side text-primary': 'text-white'} side-side text-decoration-none my-4 ps-2 d-flex flex-row align-items-center`}>
+            : <a id={data.desc} data-bs-toggle={data.to === '/top-up' ? "modal" : ''} 
+              data-bs-target={data.to === '/top-up' ? `#${idModal}` : ''} 
+              className={`${routes[1] === data.to[1] && routes[2] === data.to[2] ? 'active-side text-primary': 'text-white'} side-side text-decoration-none my-4 ps-2 d-flex flex-row align-items-center`}>
               <data.icon className='fs-5 me-2'/>
-              <span>{data.desc}</span>
+              <span onClick={data.to = '/top-up' ? topUpLink : ''}>{data.desc}</span>
             </a>}
           </Link>
         })}
@@ -62,45 +88,50 @@ const SideBar = (cls) => {
             <span>Logout</span>
           </a>
         </Link>
-        <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal fade" id={idModal} tabIndex="-1" aria-labelledby={`${idModal}Label`} aria-hidden="true">
           <div className="modal-dialog modal-dialog-centered">
             <div className="modal-content bg-primary text-dark">
               <div className="modal-header border-bottom-0">
-                <h5 className="modal-title" id="exampleModalLabel">Topup</h5>
+                <h5 className="modal-title" id={`${idModal}Label`}>Topup</h5>
                 <button onClick={e => route.push('/top-up')} type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <p className="ps-3">Enter the amount of money, and click submit</p>
               <div className="modal-body">
                 <form>
-                  <input id='topUp' className={`form-control text-center ${styles.inputModal}`} type='number' placeholder="___________" />
+                  <input id={`${idModal}Input`} className={`form-control text-center ${styles.inputModal}`} type='number' placeholder="___________" />
                   {!data && <div className='text-danger'>Data must be filled</div>}
                 </form>
               </div>
               <div className="modal-footer border-top-0">
-                <button onClick={handleTopup} type="button" className="btn btn-light" data-bs-dismiss={success ? "modal" : ''}>Submit</button>
+                {topupSuccess
+                ? <div>
+                    <div>Successfully Top Up!</div>
+                    <button onClick={handleClose} type="button" className="btn btn-light" data-bs-dismiss='modal'>Close</button>
+                  </div>
+                : (topUpData.isLoading 
+                  ? <div className="spinner-border" role="status">
+                      <span className="visually-hidden">Loading...</span>
+                    </div>
+                  : <button onClick={handleTopup} type="button" className="btn btn-light">Submit</button>
+                  )
+                }
+                {/* {topUpData.isLoading 
+                  ? (topupSuccess 
+                    ? <div>
+                        <div>Successfully Top Up!</div>
+                        <button onClick={handleClose} type="button" className="btn btn-light" data-bs-dismiss='modal'>Close</button>
+                      </div>
+                    : <div className="spinner-border" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                      </div>)
+                  : <button onClick={handleTopup} type="button" className="btn btn-light">Submit</button>
+                } */}
+                {/* <button onClick={handleTopup} type="button" className="btn btn-light" data-bs-dismiss="modal">Submit</button> */}
               </div>
             </div>
           </div>
         </div>
       </div>
-    //   <aside className='col-lg-4'>
-    //   <div className='card p-4 bg-light position-relative'>
-    //     {dataSide.map((data, index) => {
-    //       return <Link href={data.to} key={data.desc} className=' d-flex flex-row align-items-center my-3'>
-    //         <a className={`${routes === data.to && 'active-side'} side-side text-decoration-none text-white my-4 ps-2`}>
-    //           <data.icon className='fs-5 me-2'/>
-    //           <span>{data.desc}</span>
-    //         </a>
-    //       </Link>
-    //     })}
-    //     <Link href='/login' className=' d-flex flex-row align-items-center my-3 position-absolute'>
-    //       <a className='text-decoration-none text-white my-4 ps-3'>
-    //         <MdOutlineLogout className='fs-5 me-2'/>
-    //         <span>Logout</span>
-    //       </a>
-    //     </Link>
-    //   </div>
-    // </aside>
   )
 }
 
