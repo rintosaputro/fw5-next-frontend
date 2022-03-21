@@ -4,8 +4,21 @@
 .nav li {
   list-style-type: none;
 }
+.listNav {
+  display: flex;
+  flex-direction: row;
+}
+
 @media all and (max-width: 768px) {
   .btncontainer {
+    width: 100%;
+  }
+  .listNav {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .btnAuth {
     width: 100%;
   }
 }

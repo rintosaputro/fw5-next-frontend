@@ -55,7 +55,7 @@ const Profile = () => {
               </div>
               <form className="text-center my-3">
                 <input type='text' placeholder={fullName || 'name user'} className={`text-center text-white bg-light form-control border-0 fs-3 ${styles.editInput}`} />
-                <input type='tel' placeholder={phoneList.phone || '08------'} className={`text-center text-white bg-light form-control border-0 fs-3 ${styles.editInput}`} />
+                <input type='tel' pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder={phoneList.phone || '08------'} className={`text-center text-white bg-light form-control border-0 fs-3 ${styles.editInput}`} />
                 {/* <h4>{fullName || 'name user'}</h4> */}
                 {/* <div>{phoneList.phone}</div> */}
               </form>
