@@ -41,7 +41,7 @@ const Transfer = () => {
     <Layout>
       <main className={`${styles.contain} container`}>
         <Row>
-          <aside className="col-lg-4">
+          <aside className="col-lg-4 d-none d-lg-block">
             <SideBar />
           </aside>
           <section className="col-12 col-lg-8">
