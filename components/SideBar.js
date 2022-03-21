@@ -106,7 +106,7 @@ const SideBar = ({cls, idModal = 'modalSide'}) => {
                 {topupSuccess
                 ? <div>
                     <div>Successfully Top Up!</div>
-                    <button onClick={handleClose} type="button" className="btn btn-light" data-bs-dismiss='modal'>Close</button>
+                    <button onClick={handleClose} type="button" className="btn btn-light w-100" data-bs-dismiss='modal'>Close</button>
                   </div>
                 : (topUpData.isLoading 
                   ? <div className="spinner-border" role="status">
