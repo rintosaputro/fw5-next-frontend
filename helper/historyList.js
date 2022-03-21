@@ -1,7 +1,7 @@
 const histoyList = (historyData, allUser) => {
   const dataFil = historyData.results.map((data, index) => {
-    const image = allUser.results.filter(item => item.id === data.userId)
-    const dataRes = {...image, ...data}
+    const fil = allUser.results.filter(item => item.id === data.userId)
+    const dataRes = {...fil[0], ...data}
     return dataRes;
   })
   // console.log('test', dataFil)

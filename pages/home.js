@@ -9,11 +9,12 @@ import HistoriesList from '../components/HistoriesList';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getHistory } from '../redux/actions/histories';
-import histories from '../data dummy/histories';
 import { useRouter } from 'next/router';
 import { getBalance, getAllUser } from '../redux/actions/profile';
 import nominalFormat from '../helper/nominalFormat';
 import histoyList from '../helper/historyList';
+import ModalTopUp from '../components/ModalTopUp';
+import SpinnerLoad from '../components/SpinnerLoad';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -35,7 +36,7 @@ const Home = () => {
   const transactionHistories = histoyList(historyData, allUser).reverse();
   const test = (e) => {
     e.preventDefault();
-    console.log(transactionHistories[0][0])
+    console.log(transactionHistories[0])
   }
   const defaultPict = '/img/defaultPict.png';
 
@@ -51,7 +52,7 @@ const Home = () => {
             <div className='card p-4 bg-primary'>
               <Row className='text-dark'>
                 <Col xs={12} md={6} className='d-flex justify-content-between flex-column'>
-                  <div>Balance</div>
+                  <div onClick={test}>Balance</div>
                   <h2>Rp {nominalFormat(balance.results)}</h2>
                   <div>{phoneList.phone}</div>
                 </Col>
@@ -63,10 +64,11 @@ const Home = () => {
                         <span>Transfer</span>
                       </a>
                     </Link>
-                    <button onClick={test} className=' d-flex flex-row align-items-center my-2 text-white my-2 py-3 px-5 bg-light btn'>
+                    <button data-bs-toggle="modal" data-bs-target='modalSide' className=' d-flex flex-row align-items-center my-2 text-white my-2 py-3 px-5 bg-light btn'>
                       <BsArrowUp className='fs-5 me-2'/>
                       <span>Top Up</span>
                     </button>
+                    <ModalTopUp />
                   </div>
                 </Col>
               </Row>
@@ -80,11 +82,9 @@ const Home = () => {
               <Col xs={12} lg={6} className='mt-3'>
                 <div onClick={toHistories} className={`${styles.histories} card bg-light p-3 h-100`}>
                   <h4>Transaction History</h4>
-                  {/* {histories.map((data, index) => {
-                    return (index < 4 &&  <HistoriesList key={index} image={data.image} name={data.name} status={data.status} total={data.total} />)
-                  })} */}
-                  {transactionHistories.map((data, index) => {
-                    return (index < 4 &&  <HistoriesList key={index} image={data[0].picture || defaultPict} name={data[0].fullName} status={data.mutation_type.name} total={data.amount} />)
+                  {historyData.isLoading ? <SpinnerLoad/>
+                  : histoyList(historyData, allUser).reverse().map((data, index) => {
+                    return (index < 4 &&  <HistoriesList key={index} image={data.picture || defaultPict} name={data.fullName} status={data.mutation_type.name} total={data.amount} />)
                   })}
                 </div>
               </Col>
