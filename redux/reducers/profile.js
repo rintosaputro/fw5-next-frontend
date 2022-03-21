@@ -57,7 +57,7 @@ export const balance = (state = balanceState, action) => {
     }
     case 'GET_BALANCE_FULFILLED': {
       const { data } = action.payload;
-      state.isError = false;
+      state.isLoading = false;
       state.isError = false;
       state.results = data.results;
       return { ...state };

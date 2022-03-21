@@ -1,6 +1,7 @@
 const topupState = {
   isLoading: false,
   isError: false,
+  isSuccess: false,
   results: {},
   message: null
 }
@@ -18,6 +19,7 @@ export const topUp = (state = topupState, action) => {
       const { data } = action.payload;
       state.isError = false;
       state.isLoading = false;
+      state.isSuccess = true;
       state.results = data.results;
       state.message = data.message;
       return { ...state };

@@ -88,7 +88,7 @@ const Navigation = () => {
               <br/>
               
               {login.token && <span className={style.sideBar}>
-                <SideBar />
+                <SideBar idModal="modalNavbar" />
               </span>}
           </ul>
         </div>

@@ -34,7 +34,7 @@ const Home = () => {
     <Layout>
       <main className={`${styles.contain} container`}>
         <Row className=''>
-          <aside className='col-lg-4 d-none d-lg-block'>
+          <aside className='col-lg-4'>
             <SideBar />
           </aside>
           <section className='col-lg-8'>
