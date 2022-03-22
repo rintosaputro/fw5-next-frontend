@@ -64,10 +64,10 @@ const Home = () => {
                         <span>Transfer</span>
                       </a>
                     </Link>
-                    <button data-bs-toggle="modal" data-bs-target='modalSide' className=' d-flex flex-row align-items-center my-2 text-white my-2 py-3 px-5 bg-light btn'>
+                    {/* <button data-bs-toggle="modal" data-bs-target='modalSide' className=' d-flex flex-row align-items-center my-2 text-white my-2 py-3 px-5 bg-light btn'>
                       <BsArrowUp className='fs-5 me-2'/>
                       <span>Top Up</span>
-                    </button>
+                    </button> */}
                     <ModalTopUp />
                   </div>
                 </Col>

@@ -13,6 +13,13 @@ const Transfer = () => {
 
   const { users } = useSelector(state => state);
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const key = document.getElementById('search').value;
+    const filt = users.results.filter(data => data.name === key);
+    
+  }
+
   return (
     <Layout>
       <main className={`${styles.contain} container`}>
@@ -25,7 +32,7 @@ const Transfer = () => {
               <h4>Search Receiver</h4>
               <form className="d-flex flex-row mb-5">
                 <button className={`${styles.searchBtn} px-3 btn-secondary`}><BiSearchAlt2 className="fs-3"/></button>
-                <input className={`${styles.input} form-control bg-secondary`} type='text' placeholder='Search receive here' />
+                <input id='search' className={`${styles.input} form-control bg-secondary`} type='text' placeholder='Search receive here' />
               </form>
               {users.results.map((data, index) => {
                 let phone;
@@ -35,7 +42,6 @@ const Transfer = () => {
                       phone = item.number;
                     }
                   });
-                  
                 }
                 return (index < 6 && <ReceiverList key={index} event={e => route.push(`/transfer/${data.id}`)} image={data.picture || '/img/defaultPict.png'} name={data.fullName} phone={phone || 'phone not available'} />)
               })}
