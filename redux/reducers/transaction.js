@@ -39,3 +39,35 @@ export const topUp = (state = topupState, action) => {
     }
   }
 }
+
+const transState = {
+  isLoading: false,
+  isError: false,
+  errMessage: null
+}
+export const transfer = (state = transState, action) => {
+  switch (action.type) {
+    case 'TRANSFER_PENDING': {
+      state.isError = false;
+      state.errMessage = null;
+      state.isLoading = true;
+      return { ...state };
+    }
+    case 'TRANSFER_FULFILLED': {
+      state.isError = false;
+      state.isLoading = false;
+      state.errMessage = false;
+      return { ...state };
+    }
+    case 'TRANSFER_REJECTED': {
+      const { message } = action.payload.response.data
+      state.isLoading = false;
+      state.isError = true;
+      state.errMessage = message;
+      return { ...state };
+    }
+    default: {
+      return { ...state };
+    }
+  }
+}

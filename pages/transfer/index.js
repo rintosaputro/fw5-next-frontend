@@ -6,9 +6,19 @@ import { BiSearchAlt2 } from 'react-icons/bi';
 import receiver from "../../data dummy/receiver";
 import ReceiverList from "../../components/ReceiverList";
 import { useRouter } from 'next/router';
+import { useSelector } from "react-redux";
 
 const Transfer = () => {
   const route = useRouter();
+
+  const { users } = useSelector(state => state);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const key = document.getElementById('search').value;
+    const filt = users.results.filter(data => data.name === key);
+    
+  }
 
   return (
     <Layout>
@@ -22,10 +32,18 @@ const Transfer = () => {
               <h4>Search Receiver</h4>
               <form className="d-flex flex-row mb-5">
                 <button className={`${styles.searchBtn} px-3 btn-secondary`}><BiSearchAlt2 className="fs-3"/></button>
-                <input className={`${styles.input} form-control bg-secondary`} type='text' placeholder='Search receive here' />
+                <input id='search' className={`${styles.input} form-control bg-secondary`} type='text' placeholder='Search receive here' />
               </form>
-              {receiver.map((data, index) => {
-                return <ReceiverList key={index} event={e => route.push(`/transfer/${index}`)} image={data.image} name={data.name} phone={data.phone} />
+              {users.results.map((data, index) => {
+                let phone;
+                if (data.phone.length > 0) {
+                  data.phone.forEach(item => {
+                    if (item.isPrimary === 1) {
+                      phone = item.number;
+                    }
+                  });
+                }
+                return (index < 6 && <ReceiverList key={index} event={e => route.push(`/transfer/${data.id}`)} image={data.picture || '/img/defaultPict.png'} name={data.fullName} phone={phone || 'phone not available'} />)
               })}
             </div>
           </section>
