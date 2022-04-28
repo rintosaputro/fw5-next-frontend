@@ -1,5 +1,6 @@
-import http from "../../helper/http";
-const callbackUrl = process.env.CALLBACK_URL
+import http from '../../helper/http';
+
+const callbackUrl = process.env.CALLBACK_URL;
 
 export const signup = (fullName, email, password, pin) => {
   const param = new URLSearchParams();
@@ -10,19 +11,19 @@ export const signup = (fullName, email, password, pin) => {
 
   return {
     type: 'REGISTER',
-    payload: http().post('/auth/register', param)
-  }
-}
+    payload: http().post('/auth/register', param),
+  };
+};
 
 export const addDataRegist = (fullName, email, password) => {
-  const dataRegist = {fullName, email, password}
+  const dataRegist = { fullName, email, password };
   return {
     type: 'ADD_DATA_REGIST',
     payload: {
-      dataRegist
-    }
-  }
-}
+      dataRegist,
+    },
+  };
+};
 
 export const login = (email, password) => {
   const param = new URLSearchParams();
@@ -31,33 +32,31 @@ export const login = (email, password) => {
 
   return {
     type: 'LOGIN',
-    payload: http().post('/auth/login', param)
-  }
-}
+    payload: http().post('/auth/login', param),
+  };
+};
 
-export const getProfile = (token) => {
-  return {
-    type: 'USER_PROFILE',
-    payload: http(token).get('/profile')
-  }
-}
+export const getProfile = (token) => ({
+  type: 'USER_PROFILE',
+  payload: http(token).get('/profile'),
+});
 
 export const forgotPassword = (email) => {
   const param = new URLSearchParams();
   param.append('email', email);
   return {
     type: 'FORGOT_PASSWORD',
-    payload: http().post(`/auth/forgot-password?callback_url=${callbackUrl}`, param)
-  }
-}
+    payload: http().post(`/auth/forgot-password?callback_url=${callbackUrl}`, param),
+  };
+};
 
 export const changePassword = (otp, newPwd, confirmPwd) => {
   const param = new URLSearchParams();
   param.append('otp', Number(otp));
   param.append('newPassword', newPwd);
-  param.append('confirmPassword', confirmPwd)
+  param.append('confirmPassword', confirmPwd);
   return {
     type: 'CHANGE_PASSWORD',
-    payload: http().post('/auth/forgot-password', param)
-  }
-}
+    payload: http().post('/auth/forgot-password', param),
+  };
+};

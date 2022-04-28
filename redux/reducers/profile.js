@@ -3,8 +3,8 @@ const phoneState = {
   phone: null,
   isLoading: false,
   isError: false,
-  errMessage: null
-}
+  errMessage: null,
+};
 
 export const phoneList = (state = phoneState, action) => {
   switch (action.type) {
@@ -20,13 +20,13 @@ export const phoneList = (state = phoneState, action) => {
       state.isError = false;
       if (data.results.length > 0) {
         const filt = data.results.filter((data) => data.isPrimary === 1);
-        state.phone = filt[0].number
+        state.phone = filt[0].number;
       }
       state.results = data.results;
       return { ...state };
     }
     case 'GET_PHONELIST_REJECTED': {
-      const { message } = action.payload.response.data
+      const { message } = action.payload.response.data;
       state.isLoading = false;
       state.results = [];
       state.isError = true;
@@ -37,14 +37,14 @@ export const phoneList = (state = phoneState, action) => {
       return { ...state };
     }
   }
-}
+};
 
 const balanceState = {
   results: null,
   isLoading: false,
   isError: false,
-  errMessage: null
-}
+  errMessage: null,
+};
 
 export const balance = (state = balanceState, action) => {
   switch (action.type) {
@@ -63,7 +63,7 @@ export const balance = (state = balanceState, action) => {
       return { ...state };
     }
     case 'GET_BALANCE_REJECTED': {
-      const { message } = action.payload.response.data
+      const { message } = action.payload.response.data;
       state.isLoading = false;
       state.results = null;
       state.isError = true;
@@ -74,14 +74,14 @@ export const balance = (state = balanceState, action) => {
       return { ...state };
     }
   }
-}
+};
 
 const allState = {
   results: [],
   isLoading: false,
   isError: false,
-  errMessage: null
-}
+  errMessage: null,
+};
 
 export const allUser = (state = allState, action) => {
   switch (action.type) {
@@ -101,7 +101,7 @@ export const allUser = (state = allState, action) => {
       return { ...state };
     }
     case 'GET_ALL_USER_REJECTED': {
-      const { message } = action.payload.response.data
+      const { message } = action.payload.response.data;
       state.isLoading = false;
       state.results = [];
       state.isError = true;
@@ -112,4 +112,4 @@ export const allUser = (state = allState, action) => {
       return { ...state };
     }
   }
-}
+};

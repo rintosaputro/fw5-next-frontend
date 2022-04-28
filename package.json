@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "check-lint": "npx eslint **/*.js",
+    "lint": "npx eslint **/*.js --fix"
   },
   "dependencies": {
     "@kurkle/color": "^0.1.9",
@@ -30,7 +31,13 @@
     "redux-promise-middleware": "^6.1.2"
   },
   "devDependencies": {
-    "eslint": "8.11.0",
-    "eslint-config-next": "12.1.0"
+    "eslint": "^8.14.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-next": "12.1.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react-hooks": "^4.4.0"
   }
 }

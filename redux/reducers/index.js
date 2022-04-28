@@ -1,11 +1,13 @@
-import { combineReducers } from "redux";
-import histories from "./histories";
-import inputTransfer from "./transfer";
+import { combineReducers } from 'redux';
+import histories from './histories';
+import inputTransfer from './transfer';
 // import registerUser from "./auth";
-import { registerUser, login, forgotPassword, changePassword } from "./auth";
+import {
+  registerUser, login, forgotPassword, changePassword,
+} from './auth';
 import { phoneList, balance, allUser } from './profile';
-import { topUp, transfer } from "./transaction";
-import users from "./users";
+import { topUp, transfer } from './transaction';
+import users from './users';
 
 const rootReducers = combineReducers({
   histories,
@@ -19,7 +21,7 @@ const rootReducers = combineReducers({
   balance,
   topUp,
   users,
-  transfer
-})
+  transfer,
+});
 
 export default rootReducers;

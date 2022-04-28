@@ -3,20 +3,20 @@ const registerState = {
   results: {},
   message: '',
   isError: false,
-  isLoading: false
-}
+  isLoading: false,
+};
 
 export const registerUser = (state = registerState, action) => {
   switch (action.type) {
     case 'REGISTER_PENDING': {
       state.isError = false;
       state.message = '';
-      state.dataRegist = {}
+      state.dataRegist = {};
       state.isLoading = true;
-      return { ...state }
+      return { ...state };
     }
     case 'REGISTER_FULFILLED': {
-      const {data} = action.payload
+      const { data } = action.payload;
       state.isError = false;
       state.isLoading = false;
       state.results = data;
@@ -37,7 +37,7 @@ export const registerUser = (state = registerState, action) => {
       return { ...state };
     }
   }
-}
+};
 
 const loginState = {
   results: {},
@@ -45,7 +45,7 @@ const loginState = {
   isLoading: false,
   isError: false,
   errMessage: null,
-}
+};
 
 export const login = (state = loginState, action) => {
   switch (action.type) {
@@ -56,7 +56,7 @@ export const login = (state = loginState, action) => {
       return { ...state };
     }
     case 'LOGIN_FULFILLED': {
-      const { data } = action.payload
+      const { data } = action.payload;
       state.token = data.results.token;
       state.isError = false;
       state.isError = false;
@@ -64,12 +64,12 @@ export const login = (state = loginState, action) => {
       return { ...state };
     }
     case 'LOGIN_REJECTED': {
-      const {message} = action.payload.response.data
+      const { message } = action.payload.response.data;
       state.isLoading = false;
       state.token = null;
       state.errMessage = message;
       state.isError = true;
-      return  { ...state };
+      return { ...state };
     }
     case 'USER_PROFILE_PENDING': {
       state.isLoading = true;
@@ -77,16 +77,16 @@ export const login = (state = loginState, action) => {
       return { ...state };
     }
     case 'USER_PROFILE_FULFILLED': {
-      const { data } = action.payload
+      const { data } = action.payload;
       state.isError = false;
       state.isLoading = false;
       state.results = data.results;
-      return { ...state }
+      return { ...state };
     }
     case 'USER_PROFILE_REJECTED': {
       state.isError = true;
       state.isError = false;
-      state.results = {}
+      state.results = {};
       return { ...state };
     }
     case 'LOGOUT': {
@@ -95,21 +95,21 @@ export const login = (state = loginState, action) => {
       state.errMessage = null;
       state.isError = false;
       state.isLoading = false;
-      window.localStorage.removeItem('token')
+      window.localStorage.removeItem('token');
       return { ...state };
     }
     default: {
-      return  { ...state };
+      return { ...state };
     }
   }
-}
+};
 
 const forgotState = {
   message: null,
   isLoading: false,
   isError: false,
-  isSuccess: false
-}
+  isSuccess: false,
+};
 
 export const forgotPassword = (state = forgotState, action) => {
   switch (action.type) {
@@ -140,14 +140,14 @@ export const forgotPassword = (state = forgotState, action) => {
       return { ...state };
     }
   }
-}
+};
 
 const changeState = {
   message: null,
   isLoading: false,
   isError: false,
-  isSuccess: false
-}
+  isSuccess: false,
+};
 
 export const changePassword = (state = changeState, action) => {
   switch (action.type) {
@@ -178,4 +178,4 @@ export const changePassword = (state = changeState, action) => {
       return { ...state };
     }
   }
-}
+};

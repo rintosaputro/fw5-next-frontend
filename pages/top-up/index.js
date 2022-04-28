@@ -1,14 +1,18 @@
-import { Row } from "react-bootstrap";
-import Layout from "../../components/Layout";
-import SideBar from "../../components/SideBar";
-import styles from '../../styles/Transfer.module.css';
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable jsx-a11y/control-has-associated-label */
+import { Row } from 'react-bootstrap';
 import { BiSearchAlt2 } from 'react-icons/bi';
-import receiver from "../../data dummy/receiver";
-import ReceiverList from "../../components/ReceiverList";
 import { useRouter } from 'next/router';
+import { useSelector } from 'react-redux';
+import Layout from '../../components/Layout';
+import SideBar from '../../components/SideBar';
+import styles from '../../styles/Transfer.module.css';
+import ReceiverList from '../../components/ReceiverList';
 
-const TopUp = () => {
+function TopUp() {
   const route = useRouter();
+
+  const { users } = useSelector((state) => state);
 
   return (
     <Layout>
@@ -21,18 +25,26 @@ const TopUp = () => {
             <div className="card bg-light p-4">
               <h4>Search Receiver</h4>
               <form className="d-flex flex-row mb-5">
-                <button className={`${styles.searchBtn} px-3 btn-secondary`}><BiSearchAlt2 className="fs-3"/></button>
-                <input className={`${styles.input} form-control bg-secondary`} type='text' placeholder='Search receive here' />
+                <button className={`${styles.searchBtn} px-3 btn-secondary`} type="button"><BiSearchAlt2 className="fs-3" /></button>
+                <input className={`${styles.input} form-control bg-secondary`} type="text" placeholder="Search receive here" />
               </form>
-              {receiver.map((data, index) => {
-                return <ReceiverList key={index} event={e => route.push(`/transfer/${index}`)} image={data.image} name={data.name} phone={data.phone} />
+              {users.results.map((data, index) => {
+                let phone;
+                if (data.phone.length > 0) {
+                  data.phone.forEach((item) => {
+                    if (item.isPrimary === 1) {
+                      phone = item.number;
+                    }
+                  });
+                }
+                return (index < 6 && <ReceiverList key={index} event={() => route.push(`/transfer/${data.id}`)} image={data.picture || '/img/defaultPict.png'} name={data.fullName} phone={phone || 'phone not available'} />);
               })}
             </div>
           </section>
         </Row>
       </main>
     </Layout>
-  )
+  );
 }
 
 export default TopUp;

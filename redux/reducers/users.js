@@ -1,15 +1,15 @@
 const usersState = {
   isLoading: false,
   isError: false,
-  results: []
-}
+  results: [],
+};
 
 const users = (state = usersState, action) => {
   switch (action.type) {
     case 'GET_USERS_PENDING': {
       state.isError = false;
       state.isLoading = true;
-      return { ...state }
+      return { ...state };
     }
     case 'GET_USERS_FULFILLED': {
       const { data } = action.payload;
@@ -27,6 +27,6 @@ const users = (state = usersState, action) => {
       return { ...state };
     }
   }
-}
+};
 
 export default users;

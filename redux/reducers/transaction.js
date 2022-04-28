@@ -3,8 +3,8 @@ const topupState = {
   isError: false,
   isSuccess: false,
   results: {},
-  message: null
-}
+  message: null,
+};
 
 export const topUp = (state = topupState, action) => {
   switch (action.type) {
@@ -34,40 +34,50 @@ export const topUp = (state = topupState, action) => {
       state.isSuccess = false;
       return { ...state };
     }
+    case 'TOPUP_CLEAR': {
+      return { ...topupState };
+    }
     default: {
       return { ...state };
     }
   }
-}
+};
 
 const transState = {
   isLoading: false,
   isError: false,
-  errMessage: null
-}
+  isSuccess: false,
+  errMessage: null,
+};
 export const transfer = (state = transState, action) => {
   switch (action.type) {
     case 'TRANSFER_PENDING': {
       state.isError = false;
       state.errMessage = null;
       state.isLoading = true;
+      state.isSuccess = false;
       return { ...state };
     }
     case 'TRANSFER_FULFILLED': {
       state.isError = false;
       state.isLoading = false;
       state.errMessage = false;
+      state.isSuccess = true;
       return { ...state };
     }
     case 'TRANSFER_REJECTED': {
-      const { message } = action.payload.response.data
+      const { message } = action.payload.response.data;
       state.isLoading = false;
       state.isError = true;
+      state.isSuccess = false;
       state.errMessage = message;
       return { ...state };
+    }
+    case 'TRANSFER_CLEAR': {
+      return { ...transState };
     }
     default: {
       return { ...state };
     }
   }
-}
+};
