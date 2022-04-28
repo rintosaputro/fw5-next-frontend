@@ -4,12 +4,12 @@ const nextConfig = {
   env: {
     API_URL: process.env.API_URL,
     CALLBACK_URL: process.env.CALLBACK_URL,
-  }
-}
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
 // module.exports = {
-//   nextConfig, 
+//   nextConfig,
 //   sassOptions: {
 //     includePaths: [path.join(__dirname, 'styles')],
 //   }

@@ -1,6 +1,4 @@
-export const inputTransfer = (payload) => {
-  return {
-    type: 'INPUT_TRANSFER',
-    payload
-  }
-}
+export const inputTransfer = (payload) => ({
+  type: 'INPUT_TRANSFER',
+  payload,
+});

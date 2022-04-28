@@ -1,12 +1,12 @@
 const intialState = {
   results: {},
 
-}
+};
 
 const inputTransfer = (state = intialState, action) => {
   switch (action.type) {
     case 'INPUT_TRANSFER': {
-      const { payload } = action
+      const { payload } = action;
       state.results = payload;
       return { ...state };
     }
@@ -14,6 +14,6 @@ const inputTransfer = (state = intialState, action) => {
       return { ...state };
     }
   }
-}
+};
 
 export default inputTransfer;

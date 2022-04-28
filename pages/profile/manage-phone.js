@@ -1,17 +1,18 @@
-import { Row } from "react-bootstrap";
-import { useSelector } from "react-redux";
-import Layout from "../../components/Layout";
-import SideBar from "../../components/SideBar";
-import styles from '../../styles/Profile.module.css';
-import { useRouter } from "next/router";
-import ListDetail from "../../components/ListDetail";
-import Link from "next/link";
+import { Row } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
+// import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { BiTrashAlt } from 'react-icons/bi';
+import Layout from '../../components/Layout';
+import SideBar from '../../components/SideBar';
+import styles from '../../styles/Profile.module.css';
+import ListDetail from '../../components/ListDetail';
 
-const Info = () => {
-  const route = useRouter();
+function Info() {
+  // const route = useRouter();
 
-  const { login, phoneList, email } = useSelector(state => state);
+  // const { login, phoneList, email } = useSelector((state) => state);
+  const { phoneList } = useSelector((state) => state);
 
   return (
     <Layout>
@@ -25,10 +26,10 @@ const Info = () => {
               <h4>Manage Phone Number</h4>
               <p className={`${styles.par} my-4`}>You can only delete the phone number and then you must add another phone number.</p>
               <div className="position-relative">
-                <ListDetail title='Phone Number' desc={phoneList.phone || '+62 ----'}/>
-                <Link href='/profile/manage-phone'>
+                <ListDetail title="Phone Number" desc={phoneList.phone || '+62 ----'} />
+                <Link href="/profile/manage-phone">
                   <a className={`text-decoration-none position-absolute fs-2 ${styles.trash}`}>
-                    <BiTrashAlt/>
+                    <BiTrashAlt />
                   </a>
                 </Link>
               </div>
@@ -37,7 +38,7 @@ const Info = () => {
         </Row>
       </main>
     </Layout>
-  )
+  );
 }
 
 export default Info;

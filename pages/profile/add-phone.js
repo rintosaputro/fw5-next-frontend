@@ -1,15 +1,15 @@
-import { Row } from "react-bootstrap";
-import Layout from "../../components/Layout";
-import SideBar from "../../components/SideBar";
-import styles from '../../styles/Profile.module.css';
-import ButtonComp from "../../components/ButtonComp";
-import { useState } from "react";
-import InputAuth from "../../components/InputAuth";
+import { Row } from 'react-bootstrap';
+// import { useState } from 'react';
 import { BsTelephone } from 'react-icons/bs';
+import Layout from '../../components/Layout';
+import SideBar from '../../components/SideBar';
+import styles from '../../styles/Profile.module.css';
+import ButtonComp from '../../components/ButtonComp';
+import InputAuth from '../../components/InputAuth';
 
-const ChangePin = () => {
-  const [code, setCode] = useState();
-  let pin;
+function ChangePin() {
+  // const [code, setCode] = useState();
+  // let pin;
 
   return (
     <Layout>
@@ -23,15 +23,15 @@ const ChangePin = () => {
               <h4>Add Phone Number</h4>
               <p className={`${styles.par} my-4`}>Add at least one phone number for the transfer ID so you can start transfering your money to another user.</p>
               <div className={`${styles.input} mx-auto`}>
-                <InputAuth id='second' IconElement={<BsTelephone className={`${styles.icon} fs-4 position-absolute`}/>} type='number' placehld='phone number' />
-                <ButtonComp cls='mt-5' display='true'>Add Phone Number</ButtonComp>
+                <InputAuth id="second" IconElement={<BsTelephone className={`${styles.icon} fs-4 position-absolute`} />} type="number" placehld="phone number" />
+                <ButtonComp cls="mt-5" display="true">Add Phone Number</ButtonComp>
               </div>
             </div>
           </section>
         </Row>
       </main>
     </Layout>
-  )
+  );
 }
 
 export default ChangePin;
