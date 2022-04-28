@@ -5,7 +5,7 @@ import { Row } from 'react-bootstrap';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import PinInput from 'react-pin-input';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AiOutlineCheck, AiOutlineDownload } from 'react-icons/ai';
 import Layout from '../../components/Layout';
 import SideBar from '../../components/SideBar';
@@ -23,33 +23,31 @@ function Transfer() {
   const [confirm, setConfirm] = useState(false);
 
   let pin;
-  const { inputTransfer, login } = useSelector((state) => state);
+  const { inputTransfer, login, transfer: transferState } = useSelector((state) => state);
 
   const data = receiver[route.query.id];
 
-  // const data = ['nputTransfer:
-  // results:
-  // amount: "4564"
-  // balanceLeft: 111924
-  // date: "April 22, 2022 9:34"
-  // fullName: "User 100"
-  // notes: "dafa"
-  // picture: null']
+  useEffect(() => {
+    setSuccess(false);
+    setConfirm(false);
+    dispatch({ type: 'TRANSFER_CLEAR' });
+  }, []);
+
+  useEffect(() => {
+    if (transferState.isSuccess) {
+      setSuccess(true);
+      setConfirm(true);
+    } else {
+      setSuccess(false);
+      setConfirm(false);
+    }
+  }, [transferState.isSuccess]);
 
   const handleCode = (e) => {
     e.preventDefault();
     setConfirm(true);
-    // if (code === '123456') {
-    //   const token = window.localStorage.getItem('token');
-    //   setSuccess(true)
-    //   dispatch(transfer(token, Number(inputTransfer.amount), Number(inputTransfer.idUser), Number(code), inputTransfer.notes))
-    // } else {
-    //   alert('Wrong input code!')
-    // }
-    setSuccess(true);
     dispatch(transfer(login.token, Number(inputTransfer.results.amount), Number(inputTransfer.results.idUser), Number(code), inputTransfer.results.notes));
     window.scrollTo(0, 0);
-    // route.push('/transfer/confirmation');
   };
 
   const listDetail = (title, desc) => (
@@ -59,20 +57,9 @@ function Transfer() {
     </div>
   );
 
-  const dataDummy = {
-    amount: '452',
-    balanceLeft: 149548,
-    date: 'April 19, 2022 23:1',
-    image: '/img/review-1.jpg',
-    name: 'Samuel Sushi',
-    notes: 'tes',
-    phone: '+62 81345142',
-  };
-
   const {
     picture, fullName, phone, amount, balanceLeft, date, notes,
   } = inputTransfer.results;
-  // const {image, name, phone, amount, balanceLeft, date, notes} = dataDummy;
 
   return (
     <Layout>
@@ -82,9 +69,10 @@ function Transfer() {
             <SideBar />
           </aside>
           <section className="col-12 col-lg-8">
+            <button onClick={() => console.log('testttt', confirm, success)} type="button">Test</button>
             <div className="card bg-light p-4">
               {confirm
-                ? (success ? (
+                ? (!transferState.isError ? (
                   <div className="d-flex align-items-center justify-content-center flex-column">
                     <div className={`bg-primary d-flex align-items-center justify-content-center my-4 ${styles.pill}`}><AiOutlineCheck className="fs-1" /></div>
                     <h4>Transfer Success</h4>
@@ -94,7 +82,9 @@ function Transfer() {
                     <div className="d-flex align-items-center justify-content-center flex-column">
                       <div className={`bg-danger text-white d-flex align-items-center justify-content-center my-4 ${styles.pill}`}><AiOutlineCheck className="fs-1" /></div>
                       <h4>Transfer Failed</h4>
-                      <p className="px-5 text-center mt-3">We can’t transfer your money at the moment, we recommend you to check your internet connection and try again.</p>
+                      {transferState.errMessage === 'Wrong PIN!'
+                        ? <p>{transferState.errMessage}</p>
+                        : <p className="px-5 text-center mt-3">We can’t transfer your money at the moment, we recommend you to check your internet connection and try again.</p>}
                     </div>
                   )
                 )
@@ -113,7 +103,7 @@ function Transfer() {
               && (
               <div className="mt-5">
                 <h4>Transfer To</h4>
-                <ReceiverList image={picture} name={name} phone={phone} />
+                <ReceiverList image={picture || '/img/defaultPict.png'} name={fullName} phone={phone || 'Phone not available'} />
               </div>
               )}
               <div className="mt-5 text-end">
@@ -157,9 +147,9 @@ function Transfer() {
                         regexCriteria={/^[ A-Za-z0-9_@./#&+-]*$/}
                       />
                     </div>
+                    {/* {transferState.errMessage === 'Wrong PIN!' && <div className="ms-4 h4 text-danger">{transferState.errMessage}</div>} */}
                     <div className={`modal-footer ${styles.borderNone}`}>
                       <button type="button" className="btn btn-light fw-bold py-3 px-4" onClick={handleCode} data-bs-dismiss="modal">Continue</button>
-                      {/* <button type="button" className="btn btn-primary">Save changes</button> */}
                     </div>
                   </div>
                 </div>
