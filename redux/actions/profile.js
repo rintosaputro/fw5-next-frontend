@@ -19,3 +19,17 @@ export const getAllUser = (token) => ({
   type: 'GET_ALL_USER',
   payload: http(token).get('/users'),
 });
+
+export const addPhone = (token, phone) => {
+  const param = new URLSearchParams();
+  param.append('number', phone);
+  return {
+    type: 'ADD_PHONE',
+    payload: http(token).post('/profile/phones', param),
+  };
+};
+
+export const deletePhone = (token, id) => ({
+  type: 'DELETE_PHONE',
+  payload: http(token).delete(`/profile/phones/${id}`),
+});

@@ -48,7 +48,6 @@ function ForgotPassword() {
     const confirmPwd = document.getElementById('confirmPwd').value;
     if (checkPassword(newPwd) && newPwd) {
       if (newPwd === confirmPwd) {
-        alert('ok');
         dispatch(changePassword(otp, newPwd, confirmPwd));
       } else {
         alert('The password confirmation doesnt match');

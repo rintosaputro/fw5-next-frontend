@@ -31,7 +31,7 @@ function Info() {
               <ListDetail title="Last Name" desc={fullName || 'user last name'} />
               <ListDetail title="Verified E-mail" desc={email || 'email user'} />
               <div className="position-relative">
-                <ListDetail title="Phone Number" desc={phoneList.phone || '+62 ----'} />
+                <ListDetail title="Phone Number" desc={phoneList.phone || 'Phone number not available'} />
                 <Link href="/profile/manage-phone">
                   <a className={`text-decoration-none position-absolute ${styles.manage}`}>Manage</a>
                 </Link>

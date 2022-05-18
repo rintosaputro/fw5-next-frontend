@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { BsPencil } from 'react-icons/bs';
 import { AiOutlineArrowRight } from 'react-icons/ai';
 import { useRouter } from 'next/router';
-// import { useState } from 'react';
 import Layout from '../../components/Layout';
 import SideBar from '../../components/SideBar';
 import styles from '../../styles/Profile.module.css';
@@ -63,7 +62,7 @@ function Profile() {
               </div>
               <form className="text-center my-3">
                 <input type="text" placeholder={fullName || 'name user'} className={`text-center text-white bg-light form-control border-0 fs-3 ${styles.editInput}`} />
-                <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder={phoneList.phone || '08------'} className={`text-center text-white bg-light form-control border-0 fs-3 ${styles.editInput}`} />
+                <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder={phoneList.phone || 'Phone number not available'} className={`text-center text-white bg-light form-control border-0 fs-3 ${styles.editInput}`} />
                 {/* <h4>{fullName || 'name user'}</h4> */}
                 {/* <div>{phoneList.phone}</div> */}
               </form>

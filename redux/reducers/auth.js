@@ -32,6 +32,7 @@ export const registerUser = (state = registerState, action) => {
     case 'ADD_DATA_REGIST': {
       const { dataRegist } = action.payload;
       state.dataRegist = dataRegist;
+      return { ...state };
     }
     default: {
       return { ...state };
