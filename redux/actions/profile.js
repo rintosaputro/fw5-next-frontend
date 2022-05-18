@@ -28,3 +28,8 @@ export const addPhone = (token, phone) => {
     payload: http(token).post('/profile/phones', param),
   };
 };
+
+export const deletePhone = (token, id) => ({
+  type: 'DELETE_PHONE',
+  payload: http(token).delete(`/profile/phones/${id}`),
+});
