@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-shadow */
 /* eslint-disable no-unused-vars */
@@ -55,6 +57,14 @@ function SideBar({ cls, idModal = 'modalSide' }) {
     }
   };
 
+  const handleLogout = (e) => {
+    e.preventDefault();
+    dispatch({
+      type: 'LOGOUT',
+    });
+    route.push('/login');
+  };
+
   const topUpLink = (e) => {
     e.preventDefault();
     setTopupSuccess(false);
@@ -92,8 +102,8 @@ function SideBar({ cls, idModal = 'modalSide' }) {
             )}
         </Link>
       ))}
-      <Link href="/login" className=" d-flex flex-row align-items-center my-3">
-        <a className="text-decoration-none text-white my-4 ps-3 position-absolute bottom-0">
+      <Link href="" className=" d-flex flex-row align-items-center my-3">
+        <a onClick={handleLogout} className="text-decoration-none text-white my-4 ps-3 position-absolute bottom-0">
           <MdOutlineLogout className="fs-5 me-2" />
           <span>Logout</span>
         </a>

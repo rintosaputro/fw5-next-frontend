@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 const phoneState = {
   results: [],
   phone: null,
@@ -32,6 +33,46 @@ export const phoneList = (state = phoneState, action) => {
       state.isError = true;
       state.errMessage = message;
       return { ...state };
+    }
+    default: {
+      return { ...state };
+    }
+  }
+};
+
+const addPhoneState = {
+  isSuccess: false,
+  isLoading: false,
+  isError: false,
+  errMessage: '',
+};
+
+export const addPhone = (state = addPhoneState, action) => {
+  switch (action.type) {
+    case 'ADD_PHONE_PENDING': {
+      state.isError = false;
+      state.isSuccess = false;
+      state.errMessage = '';
+      state.isLoading = true;
+      return { ...state };
+    }
+    case 'ADD_PHONE_FULFILLED': {
+      state.isError = false;
+      state.isSuccess = true;
+      state.errMessage = '';
+      state.isLoading = false;
+      return { ...state };
+    }
+    case 'ADD_PHONE_REJECTED': {
+      const { message } = action.payload.response.data;
+      state.isLoading = false;
+      state.isSuccess = false;
+      state.isError = true;
+      state.errMessage = message;
+      return { ...state };
+    }
+    case 'ADD_PHONE_CLEAR': {
+      return { ...addPhoneState };
     }
     default: {
       return { ...state };
