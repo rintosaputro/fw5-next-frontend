@@ -27,6 +27,7 @@ function Profile() {
       setSuccessmessage('Update profile successfully!');
       setTimeout(() => {
         setSuccessmessage('');
+        dispatch({ type: 'UPDATE_PROFILE_CLEAR' });
       }, 6000);
     }
   }, [updateProfileState.isSuccess]);
