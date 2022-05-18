@@ -33,3 +33,16 @@ export const deletePhone = (token, id) => ({
   type: 'DELETE_PHONE',
   payload: http(token).delete(`/profile/phones/${id}`),
 });
+
+export const updateProfile = (token, data) => {
+  const param = new FormData();
+  Object.keys(data).forEach((item) => {
+    if (data[item]) {
+      param.append(`${item}`, data[item]);
+    }
+  });
+  return {
+    type: 'UPDATE_PROFILE',
+    payload: http(token).patch('/profile', param),
+  };
+};

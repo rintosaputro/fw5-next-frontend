@@ -6,7 +6,7 @@ import {
   registerUser, login, forgotPassword, changePassword,
 } from './auth';
 import {
-  phoneList, balance, allUser, addPhone, deletePhone,
+  phoneList, balance, allUser, addPhone, deletePhone, updateProfile,
 } from './profile';
 import { topUp, transfer } from './transaction';
 import users from './users';
@@ -22,6 +22,7 @@ const rootReducers = combineReducers({
   allUser,
   addPhone,
   deletePhone,
+  updateProfile,
   balance,
   topUp,
   users,

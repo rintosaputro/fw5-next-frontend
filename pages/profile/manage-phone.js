@@ -52,34 +52,42 @@ function Info() {
                   Add Phone Number
                 </a>
               </Link>
-              <div className="position-relative d-flex flex-row align-items-center justify-content-between">
+              <div className="position-relative">
                 <ListDetail title={phoneList.phone ? 'Primary' : ''} desc={phoneList.phone || 'Phone number not available'} />
                 {phoneList.phone && (
-                  idPhone === phoneList.idPrimary && deletePhoneState.isLoading
-                    ? <div className="spinner-border me-4" role="status" />
-                    : (
-                      <Link href="/profile/manage-phone">
+                  <Link href="/profile/manage-phone">
+                    {idPhone === phoneList.idPrimary && deletePhoneState.isLoading
+                      ? (
+                        <a className={`text-decoration-none position-absolute fs-2 ${styles.trash}`}>
+                          <div className={`spinner-border me-4 position-absolut ${styles.trash}`} role="status" />
+                        </a>
+                      )
+                      : (
                         <a onClick={(e) => handleDelete(phoneList.idPrimary, e)} className={`text-decoration-none position-absolute fs-2 ${styles.trash}`}>
                           <BiTrashAlt />
                         </a>
-                      </Link>
-                    )
+                      )}
+                  </Link>
                 )}
               </div>
               {phoneList.results?.map((data) => {
                 if (data.isPrimary === 0) {
                   return (
-                    <div className="position-relative d-flex flex-row align-items-center justify-content-between" key={data.id}>
+                    <div className="position-relative" key={data.id}>
                       <ListDetail title="Secondary" desc={data.number} />
-                      {idPhone === data.id && deletePhoneState.isLoading
-                        ? <div className="spinner-border me-4" role="status" />
-                        : (
-                          <Link href="/profile/manage-phone">
+                      <Link href="/profile/manage-phone">
+                        {idPhone === data.id && deletePhoneState.isLoading
+                          ? (
+                            <a className={`text-decoration-none position-absolute fs-2 ${styles.trash}`}>
+                              <div className={`spinner-border me-4 position-absolut ${styles.trash}`} role="status" />
+                            </a>
+                          )
+                          : (
                             <a onClick={(e) => handleDelete(data.id, e)} className={`text-decoration-none position-absolute fs-2 ${styles.trash}`}>
                               <BiTrashAlt />
                             </a>
-                          </Link>
-                        )}
+                          )}
+                      </Link>
                     </div>
                   );
                 }
