@@ -144,39 +144,70 @@ export const forgotPassword = (state = forgotState, action) => {
 };
 
 const changeState = {
-  message: null,
+  errMessage: null,
   isLoading: false,
   isError: false,
   isSuccess: false,
 };
-
 export const changePassword = (state = changeState, action) => {
   switch (action.type) {
-    case 'CHANGE_PASSWORD_PENDING': {
+    case 'CHANGE_PWD_PENDING': {
       state.isError = false;
-      state.message = null;
-      state.isLoading = true;
       state.isSuccess = false;
+      state.errMessage = '';
+      state.isLoading = true;
       return { ...state };
     }
-    case 'CHANGE_PASSWORD_FULFILLED': {
-      const { data } = action.payload;
-      state.isLoading = false;
+    case 'CHANGE_PWD_FULFILLED': {
       state.isError = false;
       state.isSuccess = true;
-      state.message = data.message;
+      state.errMessage = '';
+      state.isLoading = false;
       return { ...state };
     }
-    case 'CHANGE_PASSWORD_REJECTED': {
+    case 'CHANGE_PWD_REJECTED': {
       const { message } = action.payload.response.data;
       state.isLoading = false;
-      state.message = message;
       state.isSuccess = false;
       state.isError = true;
+      state.errMessage = message;
       return { ...state };
+    }
+    case 'CHANGE_PWD_CLEAR': {
+      return { ...changeState };
     }
     default: {
       return { ...state };
     }
   }
 };
+// export const changePassword = (state = changeState, action) => {
+//   switch (action.type) {
+//     case 'CHANGE_PASSWORD_PENDING': {
+//       state.isError = false;
+//       state.message = null;
+//       state.isLoading = true;
+//       state.isSuccess = false;
+//       return { ...state };
+//     }
+//     case 'CHANGE_PASSWORD_FULFILLED': {
+//       const { data } = action.payload;
+//       state.isLoading = false;
+//       state.isError = false;
+//       state.isSuccess = true;
+//       state.message = data.message;
+//       return { ...state };
+//     }
+//     case 'CHANGE_PASSWORD_REJECTED': {
+//       const { message } = action.payload.response.data;
+//       state.isLoading = false;
+//       state.message = message;
+//       state.isSuccess = false;
+//       state.isError = true;
+//       return { ...state };
+//     }
+//     default: {
+//       return { ...state };
+//     }
+//   }
+// };

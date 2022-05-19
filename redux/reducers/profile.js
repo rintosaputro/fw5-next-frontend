@@ -52,6 +52,72 @@ const initialState = {
   errMessage: '',
 };
 
+export const updateProfile = (state = initialState, action) => {
+  switch (action.type) {
+    case 'UPDATE_PROFILE_PENDING': {
+      state.isSuccess = false;
+      state.isError = false;
+      state.errMessage = '';
+      state.isLoading = true;
+      return { ...state };
+    }
+    case 'UPDATE_PROFILE_FULFILLED': {
+      state.isSuccess = true;
+      state.isError = false;
+      state.errMessage = '';
+      state.isLoading = false;
+      return { ...state };
+    }
+    case 'UPDATE_PROFILE_REJECTED': {
+      state.isSuccess = false;
+      state.isError = true;
+      const { message } = action.payload.response.data;
+      state.errMessage = message;
+      state.isLoading = false;
+      return { ...state };
+    }
+    case 'UPDATE_PROFILE_CLEAR': {
+      return { ...initialState };
+    }
+    default: {
+      return { ...state };
+    }
+  }
+};
+
+export const changePin = (state = initialState, action) => {
+  switch (action.type) {
+    case 'CHANGE_PIN_PENDING': {
+      state.isError = false;
+      state.isSuccess = false;
+      state.errMessage = '';
+      state.isLoading = true;
+      return { ...state };
+    }
+    case 'CHANGE_PIN_FULFILLED': {
+      state.isError = false;
+      state.isSuccess = true;
+      state.errMessage = '';
+      state.isLoading = false;
+      return { ...state };
+    }
+    case 'CHANGE_PIN_REJECTED': {
+      const { message } = action.payload.response.data;
+      state.isLoading = false;
+      state.isSuccess = false;
+      state.isError = true;
+      state.errMessage = message;
+      return { ...state };
+    }
+    case 'CHANGE_PIN_CLEAR': {
+      return { ...initialState };
+    }
+    default: {
+      return { ...state };
+    }
+  }
+};
+
 export const addPhone = (state = initialState, action) => {
   switch (action.type) {
     case 'ADD_PHONE_PENDING': {

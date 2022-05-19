@@ -50,13 +50,23 @@ export const forgotPassword = (email) => {
   };
 };
 
-export const changePassword = (otp, newPwd, confirmPwd) => {
+// export const changePassword = (otp, newPwd, confirmPwd) => {
+//   const param = new URLSearchParams();
+//   param.append('otp', Number(otp));
+//   param.append('newPassword', newPwd);
+//   param.append('confirmPassword', confirmPwd);
+//   return {
+//     type: 'CHANGE_PASSWORD',
+//     payload: http().post('/auth/forgot-password', param),
+//   };
+// };
+export const changePassword = (token, data) => {
   const param = new URLSearchParams();
-  param.append('otp', Number(otp));
-  param.append('newPassword', newPwd);
-  param.append('confirmPassword', confirmPwd);
+  Object.keys(data).forEach((item) => {
+    param.append(`${item}`, data[item]);
+  });
   return {
-    type: 'CHANGE_PASSWORD',
-    payload: http().post('/auth/forgot-password', param),
+    type: 'CHANGE_PWD',
+    payload: http(token).patch('/profile/change-password', param),
   };
 };
