@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -8,6 +9,10 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
+import { Bar } from 'react-chartjs-2';
+import { Row, Col } from 'react-bootstrap';
+import { BsArrowDown, BsArrowUp } from 'react-icons/bs';
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -15,29 +20,28 @@ ChartJS.register(
   BarElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
 );
-import { Bar } from 'react-chartjs-2';
-import { Row, Col } from 'react-bootstrap';
-import { BsArrowDown, BsArrowUp } from 'react-icons/bs';
 
-const ChartCard = ({labels, dataChart, income = 0, expense = 0}) => {
+function ChartCard({
+  labels, dataChart, income = 0, expense = 0,
+}) {
   const options = {
     chartAreaBorder: {
       borderColor: 'rgba(0, 0, 0, 0)',
-      color: 'rgb(0, 0, 0)'
+      color: 'rgb(0, 0, 0)',
     },
     scales: {
       x: {
         grid: {
           display: false,
-        }
+        },
       },
       y: {
         grid: {
           display: false,
-        }
-      }
+        },
+      },
     },
     responsive: true,
     plugins: {
@@ -56,36 +60,42 @@ const ChartCard = ({labels, dataChart, income = 0, expense = 0}) => {
         label: 'Dataset 1',
         data: dataChart,
         backgroundColor: '#4FBDBA',
-        color: '#fff',  
+        color: '#fff',
         borderRadius: 1000,
         barThickness: 14,
-      }
+      },
     ],
   };
 
   return (
-    <div className='container'>
-      <Row className='d-flex flex-row justify-content-end'>
-        <Row className='d-flex justify-content-end'>
+    <div className="container">
+      <Row className="d-flex flex-row justify-content-end">
+        <Row className="d-flex justify-content-end">
           <Col xs={12} md={6}>
-            <BsArrowDown className='text-primary fw-bold fs-4' />
+            <BsArrowDown className="text-primary fw-bold fs-4" />
             <div>Income</div>
-            <div className='fw-bold'>Rp. {Number(income).toLocaleString('id-ID')}</div>
+            <div className="fw-bold">
+              Rp.
+              {Number(income).toLocaleString('id-ID')}
+            </div>
           </Col>
-          <Col xs={12} md={6} className='d-flex mt-3 mt-md-0 flex-column justify-content-end'>
+          <Col xs={12} md={6} className="d-flex mt-3 mt-md-0 flex-column justify-content-end">
             <div>
-              <BsArrowUp className='text-danger fw-bold fs-4' />
+              <BsArrowUp className="text-danger fw-bold fs-4" />
               <div>Expense</div>
-              <div className='fw-bold'>Rp. {Number(expense).toLocaleString('id-ID')}</div>
+              <div className="fw-bold">
+                Rp.
+                {Number(expense).toLocaleString('id-ID')}
+              </div>
             </div>
           </Col>
         </Row>
-        <Col xs={12} className='mt-5'>
-          <Bar options={options} data={data} className='text-white'/>
+        <Col xs={12} className="mt-5">
+          <Bar options={options} data={data} className="text-white" />
         </Col>
       </Row>
     </div>
-  )
+  );
 }
 
-export default ChartCard
+export default ChartCard;

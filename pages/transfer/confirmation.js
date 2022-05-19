@@ -69,7 +69,6 @@ function Transfer() {
             <SideBar />
           </aside>
           <section className="col-12 col-lg-8">
-            <button onClick={() => console.log('testttt', confirm, success)} type="button">Test</button>
             <div className="card bg-light p-4">
               {confirm
                 ? (!transferState.isError ? (

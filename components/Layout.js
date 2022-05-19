@@ -1,14 +1,19 @@
-import Navigation from "./navbar";
-import Footer from "./Footer";
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
+// import Navigation from './navbar';
+import Navigation from './Navbar';
+import Footer from './Footer';
 
-const Layout = ({withoutNav, children, fullFooter, ...set}) => {
+function Layout({
+  withoutNav, children, fullFooter, ...set
+}) {
   return (
     <div>
-      {!withoutNav ? <Navigation/> : <></>}
+      {!withoutNav ? <Navigation /> : <div />}
       {children}
-      <Footer full={fullFooter}/>
+      <Footer full={fullFooter} />
     </div>
-  )
+  );
 }
 
 export default Layout;

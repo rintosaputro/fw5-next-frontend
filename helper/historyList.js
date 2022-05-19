@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const histoyList = (historyData, allUser) => {
   const dataFil = historyData.results.map((data, index) => {
     const fil = allUser.results.filter((item) => item.id === data.userId);
