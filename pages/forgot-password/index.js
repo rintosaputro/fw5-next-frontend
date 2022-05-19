@@ -23,7 +23,6 @@ function ForgotPassword() {
   const { forgotPassword: forgotData, changePassword: changeData } = useSelector((state) => state);
 
   useEffect(() => {
-    console.log(route.query.otp);
     if (changeData.isSuccess) {
       route.push('/login');
       setChange(true);
