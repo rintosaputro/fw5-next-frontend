@@ -46,3 +46,13 @@ export const updateProfile = (token, data) => {
     payload: http(token).patch('/profile', param),
   };
 };
+
+export const changePin = (token, oldPin, newPin) => {
+  const param = new URLSearchParams();
+  param.append('oldPin', oldPin);
+  param.append('newPin', newPin);
+  return {
+    type: 'CHANGE_PIN',
+    payload: http(token).patch('/profile/change-pin', param),
+  };
+};
