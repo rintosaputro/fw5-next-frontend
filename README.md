@@ -1,7 +1,7 @@
 # R Wallet
 
 ## About
-Rwallet is a wallet app that manages your finances. Rwallet will record your finances such as transfers and top-ups. Rwallet will help you to manage and control your finances better.
+Rwallet is a wallet app that manages your finances. Your financial activities such as transfers and topups will be recorded here. This will help you to better manage and control your finances.
 
 ## How to use
 - Clone this repository
