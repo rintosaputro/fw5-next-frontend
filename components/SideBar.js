@@ -102,7 +102,7 @@ function SideBar({ cls, idModal = 'modalSide' }) {
             )}
         </Link>
       ))}
-      <Link href="" className=" d-flex flex-row align-items-center my-3">
+      <Link href="/login" className=" d-flex flex-row align-items-center my-3">
         <a onClick={handleLogout} className="text-decoration-none text-white my-4 ps-3 position-absolute bottom-0">
           <MdOutlineLogout className="fs-5 me-2" />
           <span>Logout</span>
