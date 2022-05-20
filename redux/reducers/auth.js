@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 const registerState = {
   dataRegist: {},
   results: {},
@@ -45,6 +46,7 @@ const loginState = {
   token: null,
   isLoading: false,
   isError: false,
+  message: '',
   errMessage: null,
 };
 
@@ -53,15 +55,18 @@ export const login = (state = loginState, action) => {
     case 'LOGIN_PENDING': {
       state.isError = false;
       state.token = null;
+      state.message = '';
+      state.errMessage = '';
       state.isLoading = true;
       return { ...state };
     }
     case 'LOGIN_FULFILLED': {
       const { data } = action.payload;
-      state.token = data.results.token;
+      state.token = data.results?.token || '';
       state.isError = false;
-      state.isError = false;
-      window.localStorage.setItem('token', data.results.token);
+      state.message = data.message;
+      state.errMessage = '';
+      data.results?.token && window.localStorage.setItem('token', data.results.token);
       return { ...state };
     }
     case 'LOGIN_REJECTED': {
@@ -69,6 +74,7 @@ export const login = (state = loginState, action) => {
       state.isLoading = false;
       state.token = null;
       state.errMessage = message;
+      state.message = '';
       state.isError = true;
       return { ...state };
     }

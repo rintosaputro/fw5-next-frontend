@@ -54,7 +54,8 @@ function Login() {
           </Link>
           <div className="my-5">
             {loginState.isError && <div className="text-danger">{loginState.errMessage}</div>}
-            {loginState.isLoading
+            {loginState.message && <div className="text-danger">{loginState.message}</div>}
+            {(loginState.isLoading && !loginState.message)
               ? (
                 <div className="spinner-border" role="status">
                   <span className="visually-hidden">Loading...</span>
