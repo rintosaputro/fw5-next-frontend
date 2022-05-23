@@ -86,9 +86,14 @@ function Home() {
               </Col>
               <Col xs={12} lg={6} className="mt-3">
                 <div onClick={toHistories} className={`${styles.histories} card bg-light p-3 h-100`} aria-hidden="true">
-                  <h4>Transaction History</h4>
+                  <div className="d-flex flex-row justify-content-between">
+                    <h5>Transaction History</h5>
+                    <Link href="/histories">
+                      <a className="text-decoration-none">See all</a>
+                    </Link>
+                  </div>
                   {historyData.isLoading ? <SpinnerLoad />
-                    : histoyList(historyData, allUser).reverse().map((data, index) => (index < 4 && <HistoriesList key={index} image={data.picture || defaultPict} name={data.fullName} status={data.mutation_type.name} total={data.amount} />))}
+                    : histoyList(historyData, allUser).map((data, index) => (index < 4 && <HistoriesList key={index} image={data.picture || defaultPict} name={data.fullName} status={data.mutation_type.name} total={data.amount} />))}
                 </div>
               </Col>
             </Row>
