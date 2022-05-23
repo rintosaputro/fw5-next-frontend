@@ -41,7 +41,6 @@ function ModalTopUp() {
     } else {
       setData(false);
     }
-    console.log(nominal);
   };
 
   const topUpLink = (e) => {
@@ -50,6 +49,7 @@ function ModalTopUp() {
   };
   const handleClose = (e) => {
     e.preventDefault();
+    dispatch({ type: 'TOPUP_CLEAR' });
     setTopupSuccess(false);
     if (route.pathname !== '/top-up') {
       route.push('/top-up');
@@ -58,13 +58,6 @@ function ModalTopUp() {
 
   return (
     <>
-      {/* <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-      Launch static backdrop modal
-    </button> */}
-      {/* <button type="button"  data-bs-toggle="modal" data-bs-target="#staticBackdrop" className=' d-flex flex-row align-items-center my-2 text-white my-2 py-3 px-5 bg-light btn'>
-      <BsArrowUp className='fs-5 me-2'/>
-      <span>Top Up</span>
-    </button> */}
       <button type="button" className="d-flex flex-row align-items-center my-2 text-white my-2 py-3 px-5 bg-light btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
         <BsArrowUp className="fs-5 me-2" />
         <span>Top Up</span>

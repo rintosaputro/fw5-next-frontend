@@ -9,11 +9,9 @@ import InputAuth from '../../components/InputAuth';
 import styles from '../../styles/Auth.module.css';
 import ButtonComp from '../../components/ButtonComp';
 import { forgotPassword, changePassword } from '../../redux/actions/auth';
-// import SpinnerLoad from '../../components/SpinnerLoad';
 import checkPassword from '../../helper/checkPwd';
 
 function ForgotPassword() {
-  // const [status, setStatus] = useState('');
   const [change, setChange] = useState(false);
   const [pwd, setPwd] = useState(false);
 
@@ -37,7 +35,6 @@ function ForgotPassword() {
     } else {
       alert('Data must be fill');
     }
-    // setStatus(email)
   };
 
   const changePwd = (e) => {

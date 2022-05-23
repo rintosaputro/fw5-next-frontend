@@ -1,6 +1,4 @@
 /* eslint-disable react/prop-types */
-// import { Col } from 'react-bootstrap';
-// import style from './styles/CardLanding.module.css';
 
 const styling = () => {
   <style jsx>

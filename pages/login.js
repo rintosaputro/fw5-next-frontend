@@ -31,9 +31,6 @@ function Login() {
     if (!email || !password) {
       alert('Data must be filled');
     }
-    // if (!checkPassword(password)) {
-    //   setPwd(true)
-    // }
     if (email && password) {
       setPwd(false);
       dispatch(login(email, password));

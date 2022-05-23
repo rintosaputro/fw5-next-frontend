@@ -10,7 +10,6 @@ import { AiOutlineCheck, AiOutlineDownload } from 'react-icons/ai';
 import Layout from '../../components/Layout';
 import SideBar from '../../components/SideBar';
 import styles from '../../styles/Transfer.module.css';
-import receiver from '../../data dummy/receiver';
 import ReceiverList from '../../components/ReceiverList';
 import ButtonComp from '../../components/ButtonComp';
 import { transfer } from '../../redux/actions/transaction';
@@ -24,8 +23,6 @@ function Transfer() {
 
   let pin;
   const { inputTransfer, login, transfer: transferState } = useSelector((state) => state);
-
-  const data = receiver[route.query.id];
 
   useEffect(() => {
     setSuccess(false);
@@ -146,7 +143,6 @@ function Transfer() {
                         regexCriteria={/^[ A-Za-z0-9_@./#&+-]*$/}
                       />
                     </div>
-                    {/* {transferState.errMessage === 'Wrong PIN!' && <div className="ms-4 h4 text-danger">{transferState.errMessage}</div>} */}
                     <div className={`modal-footer ${styles.borderNone}`}>
                       <button type="button" className="btn btn-light fw-bold py-3 px-4" onClick={handleCode} data-bs-dismiss="modal">Continue</button>
                     </div>
