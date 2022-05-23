@@ -1,6 +1,5 @@
 import { Row } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
-// import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Layout from '../../components/Layout';
 import SideBar from '../../components/SideBar';
@@ -8,13 +7,8 @@ import styles from '../../styles/Profile.module.css';
 import ListDetail from '../../components/ListDetail';
 
 function Info() {
-  // const route = useRouter();
-
   const { login, phoneList } = useSelector((state) => state);
-  // const defaultPict = '/img/defaultPict.png';
-  // const { picture, fullName } = login.results;
   const { fullName } = login.results;
-  // const name = fullName.split(' ');
 
   return (
     <Layout>

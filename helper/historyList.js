@@ -4,7 +4,6 @@ const histoyList = (historyData, allUser) => {
     const dataRes = { ...fil[0], ...data };
     return dataRes;
   });
-  // const results = dataFil.sort((a, b) => a.createdAt.split('-')[2] - b.createdAt.split('-')[2]);
   const results = dataFil.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
   return results;
 };

@@ -50,16 +50,6 @@ export const forgotPassword = (email) => {
   };
 };
 
-// export const changePassword = (otp, newPwd, confirmPwd) => {
-//   const param = new URLSearchParams();
-//   param.append('otp', Number(otp));
-//   param.append('newPassword', newPwd);
-//   param.append('confirmPassword', confirmPwd);
-//   return {
-//     type: 'CHANGE_PASSWORD',
-//     payload: http().post('/auth/forgot-password', param),
-//   };
-// };
 export const changePassword = (token, data) => {
   const param = new URLSearchParams();
   Object.keys(data).forEach((item) => {

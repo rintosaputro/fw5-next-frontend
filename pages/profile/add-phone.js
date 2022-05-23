@@ -12,7 +12,6 @@ import { addPhone, getPhoneList } from '../../redux/actions/profile';
 
 function ChangePin() {
   const [errMessage, setErrMessage] = useState('');
-  // let pin;
 
   const dispatch = useDispatch();
 

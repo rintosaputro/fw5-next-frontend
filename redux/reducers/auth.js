@@ -187,33 +187,3 @@ export const changePassword = (state = changeState, action) => {
     }
   }
 };
-// export const changePassword = (state = changeState, action) => {
-//   switch (action.type) {
-//     case 'CHANGE_PASSWORD_PENDING': {
-//       state.isError = false;
-//       state.message = null;
-//       state.isLoading = true;
-//       state.isSuccess = false;
-//       return { ...state };
-//     }
-//     case 'CHANGE_PASSWORD_FULFILLED': {
-//       const { data } = action.payload;
-//       state.isLoading = false;
-//       state.isError = false;
-//       state.isSuccess = true;
-//       state.message = data.message;
-//       return { ...state };
-//     }
-//     case 'CHANGE_PASSWORD_REJECTED': {
-//       const { message } = action.payload.response.data;
-//       state.isLoading = false;
-//       state.message = message;
-//       state.isSuccess = false;
-//       state.isError = true;
-//       return { ...state };
-//     }
-//     default: {
-//       return { ...state };
-//     }
-//   }
-// };

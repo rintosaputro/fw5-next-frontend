@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-// import Navigation from './navbar';
 import Navigation from './Navbar';
 import Footer from './Footer';
 

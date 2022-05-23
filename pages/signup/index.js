@@ -18,8 +18,6 @@ function Signup() {
   const dispatch = useDispatch();
   const route = useRouter();
 
-  // const { registerUser } = useSelector((state) => state);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const first = document.getElementById('first').value;

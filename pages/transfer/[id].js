@@ -8,12 +8,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import Layout from '../../components/Layout';
 import SideBar from '../../components/SideBar';
 import styles from '../../styles/Transfer.module.css';
-// import receiver from '../../data dummy/receiver';
 import ReceiverList from '../../components/ReceiverList';
 import ButtonComp from '../../components/ButtonComp';
 import { inputTransfer } from '../../redux/actions/transfer';
 import getDate from '../../helper/getDate';
-// import { transfer } from '../../redux/actions/transaction';
 
 function Transfer() {
   const route = useRouter();
@@ -26,7 +24,6 @@ function Transfer() {
     users.results.forEach((data) => {
       if (data.id === Number(route.query.id)) {
         const { fullName, picture } = data;
-        // const { picture } = data;
         setDataUser({ fullName, picture });
         if (data.phone.length > 0) {
           data.phone.forEach((item) => {
@@ -56,15 +53,9 @@ function Transfer() {
       alert('Please fill nominal transfer');
     } else {
       const token = window.localStorage.getItem('token');
-      // dispatch(transfer(token, amount, Number(route.query.id), 121212, notes))
       dispatch(inputTransfer(payload));
       route.push('/transfer/confirmation');
     }
-  };
-
-  const test = (e) => {
-    e.preventDefault();
-    console.log(dataUser);
   };
 
   return (

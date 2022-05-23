@@ -23,7 +23,6 @@ function Pin() {
   const handleConfirm = (e) => {
     e.preventDefault();
     const { fullName, email, password } = registerUser.dataRegist;
-    console.log(fullName, email, password, Number(test));
     setStatus(true);
     dispatch(signup(fullName, email, password, Number(test)));
   };

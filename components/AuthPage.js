@@ -1,13 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Col, Row } from 'react-bootstrap';
 import Image from 'next/image';
-// import { AiOutlineMail } from 'react-icons/ai';
-// import { VscLock } from 'react-icons/vsc';
-// import Link from 'next/link';
-// import { useEffect, useState } from 'react';
-// import { useRouter } from 'next/router';
-// import ButtonComp from './ButtonComp';
-// import InputAuth from './InputAuth';
 import styles from '../styles/Auth.module.css';
 
 function AuthPage({ form, info }) {

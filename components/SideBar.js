@@ -138,18 +138,6 @@ function SideBar({ cls, idModal = 'modalSide' }) {
                   )
                   : <button onClick={handleTopup} type="button" className="btn btn-light">Submit</button>
                 )}
-              {/* {topUpData.isLoading
-                  ? (topupSuccess
-                    ? <div>
-                        <div>Successfully Top Up!</div>
-                        <button onClick={handleClose} type="button" className="btn btn-light" data-bs-dismiss='modal'>Close</button>
-                      </div>
-                    : <div className="spinner-border" role="status">
-                        <span className="visually-hidden">Loading...</span>
-                      </div>)
-                  : <button onClick={handleTopup} type="button" className="btn btn-light">Submit</button>
-                } */}
-              {/* <button onClick={handleTopup} type="button" className="btn btn-light" data-bs-dismiss="modal">Submit</button> */}
             </div>
           </div>
         </div>

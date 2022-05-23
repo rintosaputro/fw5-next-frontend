@@ -1,11 +1,8 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable no-shadow */
-/* eslint-disable no-unused-vars */
 import Link from 'next/link';
-import { Navbar, Container, Nav } from 'react-bootstrap';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
 import { MdNotificationsNone } from 'react-icons/md';
 import { useSelector } from 'react-redux';
 import ButtonComp from './ButtonComp';
@@ -29,10 +26,8 @@ function Navigation() {
     }
   };
 
-  const handleBtn = (e, route) => {
+  const handleBtn = (e) => {
     e.preventDefault();
-    // console.log('test')
-    // route.push(route)
   };
 
   return (
@@ -86,10 +81,10 @@ function Navigation() {
               : (
                 <div className={style.listNav}>
                   <li className="nav-item me-0 my-4 my-lg-0 me-lg-4">
-                    <ButtonComp cls={style.btnAuth} variant="outline-primary me-0 me-lg-3" event={(e) => route.push('/login')}>Login</ButtonComp>
+                    <ButtonComp cls={style.btnAuth} variant="outline-primary me-0 me-lg-3" event={() => route.push('/login')}>Login</ButtonComp>
                   </li>
                   <li className="nav-item">
-                    <ButtonComp cls={`text-dark ${style.btnAuth}`} variant="secondary" event={(e) => route.push('/signup')}>Signup</ButtonComp>
+                    <ButtonComp cls={`text-dark ${style.btnAuth}`} variant="secondary" event={() => route.push('/signup')}>Signup</ButtonComp>
                   </li>
                 </div>
               )}
