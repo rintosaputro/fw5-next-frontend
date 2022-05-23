@@ -3,7 +3,7 @@ import histories from './histories';
 import inputTransfer from './transfer';
 // import registerUser from "./auth";
 import {
-  registerUser, login, forgotPassword, changePassword,
+  registerUser, login, forgotPassword, changePassword, sendOtp,
 } from './auth';
 import {
   phoneList, balance, allUser, addPhone, deletePhone, updateProfile, changePin,
@@ -17,6 +17,7 @@ const rootReducers = combineReducers({
   registerUser,
   login,
   forgotPassword,
+  sendOtp,
   changePassword,
   phoneList,
   allUser,

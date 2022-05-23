@@ -149,6 +149,40 @@ export const forgotPassword = (state = forgotState, action) => {
   }
 };
 
+export const sendOtp = (state = forgotState, action) => {
+  switch (action.type) {
+    case 'SEND_OTP_PENDING': {
+      state.isError = false;
+      state.message = null;
+      state.isLoading = true;
+      state.isSuccess = false;
+      return { ...state };
+    }
+    case 'SEND_OTP_FULFILLED': {
+      const { data } = action.payload;
+      state.isLoading = false;
+      state.isError = false;
+      state.isSuccess = true;
+      state.message = data.message;
+      return { ...state };
+    }
+    case 'SEND_OTP_REJECTED': {
+      const { message } = action.payload.response.data;
+      state.isLoading = false;
+      state.message = message;
+      state.isSuccess = false;
+      state.isError = true;
+      return { ...state };
+    }
+    case 'SEND_OTP_CLEAR': {
+      return { ...forgotState };
+    }
+    default: {
+      return { ...state };
+    }
+  }
+};
+
 const changeState = {
   errMessage: null,
   isLoading: false,
