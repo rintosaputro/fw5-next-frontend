@@ -50,6 +50,17 @@ export const forgotPassword = (email) => {
   };
 };
 
+export const sendOtp = (data) => {
+  const param = new URLSearchParams();
+  Object.keys(data).forEach((item) => {
+    param.append(`${item}`, data[item]);
+  });
+  return {
+    type: 'SEND_OTP',
+    payload: http().post('/auth/forgot-password', param),
+  };
+};
+
 export const changePassword = (token, data) => {
   const param = new URLSearchParams();
   Object.keys(data).forEach((item) => {

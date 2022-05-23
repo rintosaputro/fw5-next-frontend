@@ -8,8 +8,9 @@ import AuthPage from '../../components/AuthPage';
 import InputAuth from '../../components/InputAuth';
 import styles from '../../styles/Auth.module.css';
 import ButtonComp from '../../components/ButtonComp';
-import { forgotPassword, changePassword } from '../../redux/actions/auth';
+import { forgotPassword, sendOtp } from '../../redux/actions/auth';
 import checkPassword from '../../helper/checkPwd';
+import SpinnerLoad from '../../components/SpinnerLoad';
 
 function ForgotPassword() {
   const [change, setChange] = useState(false);
@@ -18,7 +19,7 @@ function ForgotPassword() {
   const route = useRouter();
 
   const dispatch = useDispatch();
-  const { forgotPassword: forgotData, changePassword: changeData } = useSelector((state) => state);
+  const { forgotPassword: forgotData, sendOtp: changeData } = useSelector((state) => state);
 
   useEffect(() => {
     if (changeData.isSuccess) {
@@ -40,11 +41,12 @@ function ForgotPassword() {
   const changePwd = (e) => {
     e.preventDefault();
     const { otp } = route.query;
-    const newPwd = document.getElementById('newPwd').value;
-    const confirmPwd = document.getElementById('confirmPwd').value;
-    if (checkPassword(newPwd) && newPwd) {
-      if (newPwd === confirmPwd) {
-        dispatch(changePassword(otp, newPwd, confirmPwd));
+    const newPassword = document.getElementById('newPwd').value;
+    const confirmPassword = document.getElementById('confirmPwd').value;
+    if (checkPassword(newPassword) && newPassword) {
+      if (newPassword === confirmPassword) {
+        const data = { otp, newPassword, confirmPassword };
+        dispatch(sendOtp(data));
       } else {
         alert('The password confirmation doesnt match');
       }
@@ -71,7 +73,8 @@ function ForgotPassword() {
                 {pwd && <div className="text-danger">The Password must be at least 6 characters long, use upper and lower case</div>}
                 <InputAuth id="confirmPwd" IconElement={<VscLock className={`${styles.icon} fs-4 position-absolute`} />} type="text" placehld="confirm new password" />
                 <div className="mt-5">
-                  <ButtonComp event={changePwd} block="true">Reset Password</ButtonComp>
+                  {changeData.isError && <div className="text-danger mb-4 fs-3">{changeData.message}</div>}
+                  {changeData.isLoading ? <SpinnerLoad /> : <ButtonComp event={changePwd} block="true">Reset Password</ButtonComp>}
                 </div>
               </form>
             ))
