@@ -35,12 +35,6 @@ function Home() {
     e.preventDefault();
     route.push('/histories');
   };
-
-  const transactionHistories = histoyList(historyData, allUser).reverse();
-  const test = (e) => {
-    e.preventDefault();
-    console.log(transactionHistories[0]);
-  };
   const defaultPict = '/img/defaultPict.png';
 
   return (
@@ -54,7 +48,7 @@ function Home() {
             <div className="card p-4 bg-primary">
               <Row className="text-dark">
                 <Col xs={12} md={6} className="d-flex justify-content-between flex-column">
-                  <div onClick={test} aria-hidden="true">Balance</div>
+                  <div aria-hidden="true">Balance</div>
                   <h2>
                     Rp
                     {nominalFormat(balance.results)}

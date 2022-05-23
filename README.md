@@ -17,7 +17,7 @@ cd rwallet-nextjs
 npm install
 ```
 - Copy .env.example and rename file to .env
-- In the env file, fill in the existing data. Example: API_URL=https://fw5-zwallet.herokuapp.com
+- In the env file, fill in the existing data. Example: API_URL=https://fw5-zwallet.herokuapp.com , CALLBACK_URL=https://rwallet.netlify.app/
 - Run app
 ```
 npm run dev
