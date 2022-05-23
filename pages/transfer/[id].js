@@ -25,14 +25,14 @@ function Transfer() {
   useEffect(() => {
     users.results.forEach((data) => {
       if (data.id === Number(route.query.id)) {
-        const { fullName } = data;
-        const { picture } = data;
+        const { fullName, picture } = data;
+        // const { picture } = data;
         setDataUser({ fullName, picture });
         if (data.phone.length > 0) {
           data.phone.forEach((item) => {
             if (item.isPrimary === 1) {
               const { number } = item;
-              setDataUser({ ...dataUser, number });
+              setDataUser({ fullName, picture, phone: number });
             }
           });
         }
@@ -62,6 +62,11 @@ function Transfer() {
     }
   };
 
+  const test = (e) => {
+    e.preventDefault();
+    console.log(dataUser);
+  };
+
   return (
     <Layout>
       <main className={`${styles.contain} container`}>
@@ -72,7 +77,7 @@ function Transfer() {
           <section className="col-12 col-lg-8">
             <div className="card bg-light p-4">
               <h4>Transfer Money</h4>
-              <ReceiverList image={dataUser.picture || '/img/defaultPict.png'} name={dataUser.fullName || 'name'} phone={dataUser.number || '080000'} />
+              <ReceiverList image={dataUser.picture || '/img/defaultPict.png'} name={dataUser.fullName || 'name'} phone={dataUser.phone || 'Phone not available'} />
               <p className="my-5">
                 Type the amount you want to transfer and then
                 <br />
