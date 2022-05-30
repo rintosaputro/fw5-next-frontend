@@ -26,6 +26,13 @@ function Home() {
 
   useEffect(() => {
     const token = window.localStorage.getItem('token');
+    if (!token) {
+      route.push('/login');
+    }
+  }, []);
+
+  useEffect(() => {
+    const token = window.localStorage.getItem('token');
     dispatch(getBalance(token));
     dispatch(getHistory(token));
     dispatch(getAllUser(token));
